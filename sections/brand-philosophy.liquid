@@ -1,0 +1,137 @@
+<div class="brand-philosophy section-padding" style="background-color: {{ section.settings.color_bg }};">
+  <div class="page-width">
+    <div class="brand-philosophy__inner grid grid--2-col align-center">
+      <div class="grid__item brand-philosophy__text-column">
+        {%- if section.settings.quote != blank -%}
+          <div class="brand-philosophy__quote">
+            {{ section.settings.quote }}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="grid__item brand-philosophy__image-column">
+        <div class="brand-philosophy__image-wrapper" style="border-radius: {{ section.settings.image_radius }}px; overflow: hidden;">
+          {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url: width: 800 }}" 
+                 alt="{{ section.settings.heading | escape }}" 
+                 loading="lazy" 
+                 width="800" 
+                 height="{{ 800 | divided_by: section.settings.image.aspect_ratio | round }}">
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="grid__item brand-philosophy__content-column">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="brand-philosophy__heading">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="brand-philosophy__description">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .brand-philosophy__inner {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+  @media screen and (max-width: 749px) {
+    .brand-philosophy__inner {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+  .brand-philosophy__text-column,
+  .brand-philosophy__content-column {
+    flex: 1;
+  }
+  .brand-philosophy__image-column {
+    flex: 1.2;
+  }
+  .brand-philosophy__quote {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-style: italic;
+    color: var(--color-primary);
+    line-height: 1.2;
+    position: relative;
+  }
+  .brand-philosophy__quote::before {
+    content: '“';
+    font-size: 5rem;
+    color: var(--color-secondary);
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    opacity: 0.3;
+  }
+  .brand-philosophy__heading {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  .brand-philosophy__description {
+    font-size: 1rem;
+    color: var(--color-text);
+    opacity: 0.8;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Philosophy",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "default": 16,
+      "unit": "px",
+      "label": "Image border radius"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "default": "<p>Nature is not a luxury. It is a necessity.</p>",
+      "label": "Quote"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "BRAND PHILOSOPHY",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Nature is not a luxury. It is a necessity. In nature, fine botanical products cater your senses...</p>",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#f9f6f0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Philosophy"
+    }
+  ]
+}
+{% endschema %}

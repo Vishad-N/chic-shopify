@@ -1,0 +1,300 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "hero_height": "medium",
+        "overlay_opacity": 30,
+        "heading": "Luxury Botanical Beauty Crafted by Nature",
+        "subheading": "<p>Pure botanical skincare rituals inspired by nature and perfected with science.<\/p>",
+        "content_alignment": "text-center",
+        "color_text": "#ffffff",
+        "button_1_label": "Shop Collection",
+        "button_1_link": "shopify:\/\/collections\/all",
+        "button_2_label": "Discover Our Story",
+        "button_2_link": "shopify:\/\/pages\/about"
+      }
+    },
+    "featured_collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_1": {
+          "type": "collection",
+          "settings": {
+            "heading": "Hair Care"
+          }
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {
+            "heading": "Skin Care"
+          }
+        },
+        "collection_3": {
+          "type": "collection",
+          "settings": {
+            "heading": "Body Care"
+          }
+        },
+        "collection_4": {
+          "type": "collection",
+          "settings": {
+            "heading": "Gift Sets"
+          }
+        }
+      },
+      "block_order": [
+        "collection_1",
+        "collection_2",
+        "collection_3",
+        "collection_4"
+      ],
+      "settings": {
+        "heading": "FEATURED COLLECTIONS",
+        "color_bg": "#f9f6f0",
+        "image_radius": 16
+      }
+    },
+    "best_sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "heading": "BEST SELLERS",
+        "subheading": "Premium product slider",
+        "products_to_show": 8,
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "color_bg": "#f9f6f0"
+      }
+    },
+    "brand_philosophy": {
+      "type": "brand-philosophy",
+      "settings": {
+        "quote": "<p>Nature is not a luxury. It is a necessity.<\/p>",
+        "heading": "BRAND PHILOSOPHY",
+        "description": "<p>In nature, fine botanical products cater to your senses...<\/p>",
+        "color_bg": "#f9f6f0",
+        "image_radius": 16
+      }
+    },
+    "botanical_ingredients": {
+      "type": "botanical-ingredients",
+      "blocks": {
+        "ingredient_1": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Neem",
+            "description": "Reveal on hover",
+            "details": "Deeply purifies and soothes skin with natural antibacterial properties."
+          }
+        },
+        "ingredient_2": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Rosehip",
+            "description": "Reveal on hover",
+            "details": "Rich in vitamins and essential fatty acids for regeneration."
+          }
+        },
+        "ingredient_3": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Calendula",
+            "description": "Reveal on hover",
+            "details": "Calms sensitive skin and promotes healing."
+          }
+        },
+        "ingredient_4": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Evening Primrose",
+            "description": "Reveal on hover",
+            "details": "Intensely nourishes and improves skin elasticity."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_1",
+        "ingredient_2",
+        "ingredient_3",
+        "ingredient_4"
+      ],
+      "settings": {
+        "heading": "BOTANICAL INGREDIENTS",
+        "color_bg": "#f9f6f0",
+        "card_radius": 16
+      }
+    },
+    "skincare_ritual": {
+      "type": "skincare-ritual",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "time": "Morning",
+            "step_name": "Cleanser"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "time": "Morning",
+            "step_name": "Serum"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "time": "Morning/Night",
+            "step_name": "Cream"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "time": "Night",
+            "step_name": "Night Care"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
+      "settings": {
+        "heading": "COMPLETE SKINCARE RITUAL",
+        "color_bg": "#f9f6f0"
+      }
+    },
+    "why_choose_chic": {
+      "type": "why-choose-chic",
+      "blocks": {
+        "icon_1": {
+          "type": "icon_card",
+          "settings": {
+            "title": "100% Botanical",
+            "description": "<p>Luxury from nature.<\/p>"
+          }
+        },
+        "icon_2": {
+          "type": "icon_card",
+          "settings": {
+            "title": "Cruelty Free",
+            "description": "<p>Never tested on animals.<\/p>"
+          }
+        },
+        "icon_3": {
+          "type": "icon_card",
+          "settings": {
+            "title": "Ayurveda Wisdom",
+            "description": "<p>Ancient holistic balance.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3"
+      ],
+      "settings": {
+        "heading": "WHY CHOOSE CHIC",
+        "color_bg": "#f9f6f0",
+        "card_radius": 16
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "test_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Natural, luxurious, and deeply hydrating.",
+            "author": "Sarah M.",
+            "location": "Verified Buyer"
+          }
+        },
+        "test_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The best skincare routine I have ever used.",
+            "author": "Jessica L.",
+            "location": "Verified Buyer"
+          }
+        },
+        "test_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Absolutely perfect for my sensitive skin.",
+            "author": "Emily R.",
+            "location": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "test_1",
+        "test_2",
+        "test_3"
+      ],
+      "settings": {
+        "heading": "TESTIMONIALS",
+        "color_bg": "#f9f6f0",
+        "card_radius": 16
+      }
+    },
+    "instagram_feed": {
+      "type": "instagram-feed",
+      "blocks": {
+        "img_1": { "type": "image" },
+        "img_2": { "type": "image" },
+        "img_3": { "type": "image" },
+        "img_4": { "type": "image" },
+        "img_5": { "type": "image" },
+        "img_6": { "type": "image" },
+        "img_7": { "type": "image" },
+        "img_8": { "type": "image" }
+      },
+      "block_order": [
+        "img_1",
+        "img_2",
+        "img_3",
+        "img_4",
+        "img_5",
+        "img_6",
+        "img_7",
+        "img_8"
+      ],
+      "settings": {
+        "heading": "INSTAGRAM",
+        "color_bg": "#f9f6f0",
+        "grid_gap": 16,
+        "image_radius": 16
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "NEWSLETTER",
+        "subheading": "<p>Join the Botanical Circle.<\/p>",
+        "color_bg": "#2b4c3b",
+        "color_text": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collections",
+    "best_sellers",
+    "brand_philosophy",
+    "botanical_ingredients",
+    "skincare_ritual",
+    "why_choose_chic",
+    "testimonials",
+    "instagram_feed",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,141 @@
+<div class="collection section-padding page-width" data-section-id="{{ section.id }}">
+  <div class="collection__header text-center" style="margin-bottom: 4rem;">
+    {%- if section.settings.show_collection_image and collection.image -%}
+      <div class="collection__image-wrapper" style="margin-bottom: 2rem; border-radius: {{ settings.button_border_radius }}px; overflow: hidden; height: 300px;">
+        <img src="{{ collection.image | image_url: width: 1200 }}" alt="{{ collection.title | escape }}" loading="lazy" width="1200" height="300" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    {%- endif -%}
+    <h1 class="collection__title">{{ collection.title | escape }}</h1>
+    {%- if section.settings.show_collection_description and collection.description != blank -%}
+      <div class="collection__description rte">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="collection__toolbar">
+    <div class="collection__filters">
+      <!-- Basic filtering structure -->
+      <form class="filter-form">
+        <label for="SortBy">{{ 'collection.sort_by_label' | t }}</label>
+        <select name="sort_by" class="filter-form__select" id="SortBy" onchange="this.form.submit()">
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected="selected"{% endif %}>
+              {{ option.name }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </form>
+    </div>
+    <div class="collection__product-count">
+      {{ collection.products_count }} products
+    </div>
+  </div>
+
+  {% paginate collection.products by section.settings.products_per_page %}
+    <div class="collection__grid grid grid--3-col grid--4-col">
+      {%- for product in collection.products -%}
+        <div class="grid__item">
+          {% render 'product-card', product: product, show_secondary_image: section.settings.show_secondary_image, show_vendor: section.settings.show_vendor, show_rating: section.settings.show_rating %}
+        </div>
+      {%- else -%}
+        <div class="collection__empty">
+          <p>{{ 'collection.empty' | t }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <div class="pagination-wrapper text-center" style="margin-top: 4rem;">
+        {{ paginate | default_pagination: next: '→', previous: '←' }}
+      </div>
+    {%- endif -%}
+  {% endpaginate %}
+</div>
+
+<style>
+  .collection__title {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  .collection__description {
+    font-size: 1.125rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.8;
+  }
+  .collection__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .filter-form__select {
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: {{ settings.button_border_radius }}px;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin-left: 1rem;
+  }
+  .pagination-wrapper a, .pagination-wrapper span {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: inherit;
+  }
+  .pagination-wrapper .current {
+    background-color: var(--color-text);
+    color: var(--color-background);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": true,
+      "label": "Show collection image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "Show collection description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show product vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show product rating"
+    }
+  ]
+}
+{% endschema %}

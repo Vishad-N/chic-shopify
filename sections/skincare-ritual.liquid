@@ -1,0 +1,195 @@
+<div class="skincare-ritual section-padding" style="background-color: {{ section.settings.color_bg }};">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-heading text-center">
+        <h2>{{ section.settings.heading | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="ritual-timeline">
+      <div class="ritual-timeline__line"></div>
+      
+      <div class="ritual-timeline__nodes">
+        {%- for block in section.blocks -%}
+          <div class="ritual-node" {{ block.shopify_attributes }}>
+            <div class="ritual-node__icon">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.step_name | escape }}" loading="lazy" width="60" height="auto">
+              {%- else -%}
+                <div class="ritual-node__placeholder"></div>
+              {%- endif -%}
+            </div>
+            <div class="ritual-node__content">
+              <span class="ritual-node__time">{{ block.settings.time }}</span>
+              <h4 class="ritual-node__title">{{ block.settings.step_name | escape }}</h4>
+              {%- if block.settings.product != blank -%}
+                <a href="{{ block.settings.product.url }}" class="link ritual-node__link">View Product &rarr;</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .skincare-ritual .section-heading h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .ritual-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  .ritual-timeline__line {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(0,0,0,0.1);
+    z-index: 1;
+  }
+  .ritual-timeline__nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+  @media screen and (max-width: 749px) {
+    .ritual-timeline__line {
+      top: 0;
+      bottom: 0;
+      left: 50px;
+      right: auto;
+      width: 2px;
+      height: 100%;
+    }
+    .ritual-timeline__nodes {
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .ritual-node {
+      flex-direction: row;
+      align-items: center;
+      text-align: left !important;
+      gap: 1.5rem;
+    }
+  }
+  .ritual-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+  }
+  .ritual-node__icon {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  .ritual-node:hover .ritual-node__icon {
+    transform: scale(1.1);
+  }
+  .ritual-node__placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .ritual-node__time {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .ritual-node__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  .ritual-node__link {
+    font-size: 0.85rem;
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+  .ritual-node__link:hover {
+    opacity: 1;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Skincare Ritual",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "COMPLETE SKINCARE RITUAL",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#f9f6f0"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon/Image"
+        },
+        {
+          "type": "text",
+          "id": "time",
+          "default": "Morning",
+          "label": "Time of day"
+        },
+        {
+          "type": "text",
+          "id": "step_name",
+          "default": "Cleanser",
+          "label": "Step Name"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Associated Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skincare Ritual",
+      "blocks": [
+        { "type": "step", "settings": { "time": "Morning", "step_name": "Cleanser" } },
+        { "type": "step", "settings": { "time": "Morning", "step_name": "Serum" } },
+        { "type": "step", "settings": { "time": "Morning/Night", "step_name": "Cream" } },
+        { "type": "step", "settings": { "time": "Night", "step_name": "Night Care" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

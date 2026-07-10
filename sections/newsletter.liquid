@@ -1,0 +1,171 @@
+<div class="newsletter-section section-padding" style="background-color: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }}; position: relative; overflow: hidden;">
+  {%- if section.settings.image != blank -%}
+    <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="" loading="lazy" width="2000" height="auto" class="newsletter-section__bg-image">
+    <div class="newsletter-section__overlay"></div>
+  {%- endif -%}
+
+  <div class="page-width newsletter-section__content text-center">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="newsletter-section__heading" style="color: inherit;">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <div class="newsletter-section__subheading">
+        {{ section.settings.subheading }}
+      </div>
+    {%- endif -%}
+
+    <div class="newsletter-section__form-wrapper">
+      {%- form 'customer', class: 'newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form__field-wrapper">
+          <div class="field">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="field__input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="Newsletter-error--{{ section.id }}"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="Newsletter-success--{{ section.id }}"
+              {% endif %}
+              placeholder="{{ 'newsletter.label' | t }}"
+              required
+            >
+            <button type="submit" class="newsletter-form__button field__button button" name="commit" id="Subscribe" style="background-color: #fff; color: var(--color-primary);">
+              {{ 'newsletter.button_label' | t }}
+            </button>
+          </div>
+          {%- if form.errors -%}
+            <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </small>
+          {%- endif -%}
+        </div>
+        {%- if form.posted_successfully? -%}
+          <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>
+            {{ 'newsletter.success' | t }}
+          </h3>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .newsletter-section {
+    position: relative;
+    padding: 6rem 0;
+  }
+  .newsletter-section__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .newsletter-section__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2;
+  }
+  .newsletter-section__content {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .newsletter-section__heading {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .newsletter-section__subheading {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  .newsletter-section .field {
+    display: flex;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: {{ settings.button_border_radius }}px;
+    overflow: hidden;
+  }
+  .newsletter-section .field__input {
+    flex: 1;
+    border: none;
+    padding: 1rem 1.5rem;
+    color: inherit;
+  }
+  .newsletter-section .field__input::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+  .newsletter-section .field__input:focus {
+    outline: none;
+  }
+  .newsletter-section .button {
+    border: none;
+    border-radius: 0;
+  }
+  .newsletter-form__message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "NEWSLETTER",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "default": "<p>Join the Botanical Circle.</p>",
+      "label": "Subheading"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background Color (if no image)",
+      "default": "#2b4c3b"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

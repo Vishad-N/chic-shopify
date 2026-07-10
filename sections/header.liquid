@@ -1,0 +1,203 @@
+<header-component class="header {% if section.settings.enable_sticky_header %}header--sticky{% endif %} {% if section.settings.transparent_on_home and template.name == 'index' %}header--transparent{% endif %}" style="background-color: {{ section.settings.color_bg }};">
+  <div class="page-width">
+    <div class="header__inner">
+      {%- if section.settings.logo_position == 'left' -%}
+        <div class="header__logo">
+          <a href="{{ routes.root_url }}">
+            {%- if section.settings.logo != blank -%}
+              <img src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}" alt="{{ shop.name }}" width="{{ section.settings.logo_width }}" height="auto" loading="eager">
+            {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endif -%}
+
+      <nav class="header__inline-menu">
+        <ul class="list-menu list-menu--inline" role="list">
+          {%- for link in section.settings.menu.links -%}
+            <li>
+              <a href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset" {% if link.current %} aria-current="page"{% endif %}>
+                <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+              </a>
+              {%- if link.links != blank -%}
+                <!-- Mega Menu / Dropdown logic here -->
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      {%- if section.settings.logo_position == 'center' -%}
+        <div class="header__logo header__logo--center">
+          <a href="{{ routes.root_url }}">
+            {%- if section.settings.logo != blank -%}
+              <img src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}" alt="{{ shop.name }}" width="{{ section.settings.logo_width }}" height="auto" loading="eager">
+            {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endif -%}
+
+      <div class="header__icons">
+        <a href="{{ routes.search_url }}" class="header__icon header__icon--search link focus-inset">
+          {% render 'icon-search' %}
+        </a>
+
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
+            {% render 'icon-account' %}
+          </a>
+        {%- endif -%}
+
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble" onclick="event.preventDefault(); document.querySelector('cart-drawer').open();">
+          {% render 'icon-cart' %}
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header-component>
+
+<style>
+  .header {
+    padding: 20px 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 100;
+  }
+  .header--sticky {
+    position: sticky;
+    top: 0;
+  }
+  .header--transparent {
+    position: absolute;
+    width: 100%;
+    background-color: transparent !important;
+  }
+  .header--transparent .header__menu-item,
+  .header--transparent .header__icon {
+    color: #fff; /* Assuming light text over dark hero */
+  }
+  .header.is-scrolled {
+    background-color: {{ section.settings.color_bg }} !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .header.is-scrolled .header__menu-item,
+  .header.is-scrolled .header__icon {
+    color: var(--color-text);
+  }
+  .header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header__inline-menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .list-menu--inline {
+    display: flex;
+    gap: 2rem;
+  }
+  .header__icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .header__icon {
+    position: relative;
+    color: var(--color-text);
+  }
+  .header__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .cart-count-bubble {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 10px;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header__logo--center {
+    flex: 1;
+    text-align: center;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "Custom logo width"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Logo position"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "default": true,
+      "label": "Enable sticky header"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_on_home",
+      "default": true,
+      "label": "Enable transparent header on homepage"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#f9f6f0"
+    }
+  ]
+}
+{% endschema %}

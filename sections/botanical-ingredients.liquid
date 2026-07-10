@@ -1,0 +1,166 @@
+<div class="botanical-ingredients section-padding" style="background-color: {{ section.settings.color_bg }};">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-heading text-center">
+        <h2>{{ section.settings.heading | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="grid grid--2-col grid--4-col">
+      {%- for block in section.blocks -%}
+        <div class="grid__item" {{ block.shopify_attributes }}>
+          <div class="ingredient-card" style="border-radius: {{ section.settings.card_radius }}px; background-color: #fff; padding: 2rem; text-align: center; height: 100%; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden;">
+            <div class="ingredient-card__image">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="120" height="auto" style="margin: 0 auto; display: block;">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <h3 class="ingredient-card__title">{{ block.settings.title | escape }}</h3>
+            <p class="ingredient-card__description">{{ block.settings.description | escape }}</p>
+
+            <div class="ingredient-card__popup">
+              <div class="ingredient-card__popup-inner">
+                <h4>{{ block.settings.title | escape }}</h4>
+                <p>{{ block.settings.details | escape }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .botanical-ingredients .section-heading h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .ingredient-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .ingredient-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  .ingredient-card__image {
+    margin-bottom: 1.5rem;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ingredient-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .ingredient-card__description {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+  .ingredient-card__popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2;
+  }
+  .ingredient-card:hover .ingredient-card__popup {
+    opacity: 1;
+    visibility: visible;
+  }
+  .ingredient-card__popup-inner h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .ingredient-card__popup-inner p {
+    font-size: 0.9rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Botanical Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "BOTANICAL INGREDIENTS",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#f9f6f0"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "default": 16,
+      "unit": "px",
+      "label": "Card border radius"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon/Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Neem",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "default": "Reveal on hover",
+          "label": "Short description"
+        },
+        {
+          "type": "textarea",
+          "id": "details",
+          "default": "Deeply purifies and soothes skin with natural antibacterial properties.",
+          "label": "Hover details"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Botanical Ingredients",
+      "blocks": [
+        { "type": "ingredient", "settings": { "title": "Neem" } },
+        { "type": "ingredient", "settings": { "title": "Rosehip" } },
+        { "type": "ingredient", "settings": { "title": "Calendula" } },
+        { "type": "ingredient", "settings": { "title": "Evening Primrose" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

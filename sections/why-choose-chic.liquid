@@ -1,0 +1,134 @@
+<div class="why-choose section-padding" style="background-color: {{ section.settings.color_bg }};">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-heading text-center">
+        <h2>{{ section.settings.heading | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="grid grid--3-col">
+      {%- for block in section.blocks -%}
+        <div class="grid__item" {{ block.shopify_attributes }}>
+          <div class="icon-card text-center" style="border-radius: {{ section.settings.card_radius }}px;">
+            <div class="icon-card__icon">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 60 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="40" height="auto">
+              {%- else -%}
+                <!-- SVG fallback for botanical icons -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22C12 22 17 17 17 12C17 7 12 2 12 2C12 2 7 7 7 12C7 17 12 22 12 22Z"/>
+                </svg>
+              {%- endif -%}
+            </div>
+            <h3 class="icon-card__title">{{ block.settings.title | escape }}</h3>
+            {%- if block.settings.description != blank -%}
+              <div class="icon-card__description">
+                {{ block.settings.description }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .why-choose .section-heading h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .icon-card {
+    background-color: #fff;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  .icon-card:hover {
+    transform: translateY(-5px);
+  }
+  .icon-card__icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+  .icon-card__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  .icon-card__description {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Why Choose Chic",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "WHY CHOOSE CHIC",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#f9f6f0"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "default": 16,
+      "unit": "px",
+      "label": "Card border radius"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_card",
+      "name": "Icon Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Icon (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "100% Botanical",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "default": "<p>Luxury from nature.</p>",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Chic",
+      "blocks": [
+        { "type": "icon_card", "settings": { "title": "100% Botanical" } },
+        { "type": "icon_card", "settings": { "title": "Cruelty Free" } },
+        { "type": "icon_card", "settings": { "title": "Ayurveda Wisdom" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
