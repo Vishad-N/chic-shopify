@@ -1,137 +1,108 @@
 [
   {
-    "name": "Theme info",
-    "theme_name": "CHIC - The Botanical Beauty",
-    "theme_author": "Antigravity",
+    "name": "theme_info",
+    "theme_name": "CHIC Botanical Beauty",
+    "theme_author": "Developer",
     "theme_version": "1.0.0",
-    "theme_documentation_url": "https://help.shopify.com/en/manual/online-store/themes",
-    "theme_support_url": "https://help.shopify.com/"
+    "theme_documentation_url": "https://help.shopify.com",
+    "theme_support_url": "https://help.shopify.com"
   },
   {
-    "name": "Colors",
+    "name": "Branding",
     "settings": [
       {
-        "type": "color",
-        "id": "color_primary",
-        "label": "Primary color",
-        "default": "#2b4c3b"
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
       },
       {
-        "type": "color",
-        "id": "color_secondary",
-        "label": "Secondary color",
-        "default": "#8a967a"
+        "type": "range",
+        "id": "logo_width_desktop",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo Width (Desktop)",
+        "default": 150
       },
       {
-        "type": "color",
-        "id": "color_background",
-        "label": "Background color",
-        "default": "#f9f6f0"
+        "type": "range",
+        "id": "logo_width_mobile",
+        "min": 50,
+        "max": 200,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo Width (Mobile)",
+        "default": 100
       },
       {
-        "type": "color",
-        "id": "color_text",
-        "label": "Text color",
-        "default": "#333333"
-      },
-      {
-        "type": "color",
-        "id": "color_button",
-        "label": "Button background",
-        "default": "#2b4c3b"
-      },
-      {
-        "type": "color",
-        "id": "color_button_text",
-        "label": "Button text",
-        "default": "#ffffff"
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Will be scaled down to 32 x 32px"
       }
     ]
   },
   {
-    "name": "Typography",
+    "name": "Social Media",
     "settings": [
       {
-        "type": "font_picker",
-        "id": "font_heading",
-        "label": "Heading font",
-        "default": "playfair_display_n4"
+        "type": "url",
+        "id": "social_instagram_url",
+        "label": "Instagram URL"
       },
       {
-        "type": "font_picker",
-        "id": "font_body",
-        "label": "Body font",
-        "default": "inter_n4"
+        "type": "url",
+        "id": "social_facebook_url",
+        "label": "Facebook URL"
       },
       {
-        "type": "range",
-        "id": "heading_base_size",
-        "min": 10,
-        "max": 100,
-        "step": 1,
-        "unit": "px",
-        "label": "Heading base size",
-        "default": 32
+        "type": "url",
+        "id": "social_pinterest_url",
+        "label": "Pinterest URL"
       },
       {
-        "type": "range",
-        "id": "body_base_size",
-        "min": 10,
-        "max": 30,
-        "step": 1,
-        "unit": "px",
-        "label": "Body base size",
-        "default": 16
+        "type": "url",
+        "id": "social_youtube_url",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "url",
+        "id": "social_linkedin_url",
+        "label": "LinkedIn URL"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_url",
+        "label": "X (Twitter) URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok_url",
+        "label": "TikTok URL"
       }
     ]
   },
   {
-    "name": "Layout",
+    "name": "Custom Code",
     "settings": [
       {
-        "type": "range",
-        "id": "page_width",
-        "min": 1000,
-        "max": 1600,
-        "step": 100,
-        "default": 1200,
-        "unit": "px",
-        "label": "Page width"
+        "type": "textarea",
+        "id": "custom_css",
+        "label": "Custom CSS",
+        "info": "Add custom CSS here. Do not include <style> tags."
       },
       {
-        "type": "range",
-        "id": "spacing_grid_horizontal",
-        "min": 8,
-        "max": 40,
-        "step": 4,
-        "default": 20,
-        "label": "Horizontal space between grid items",
-        "unit": "px"
+        "type": "textarea",
+        "id": "custom_head_scripts",
+        "label": "Custom Head Scripts",
+        "info": "Add scripts to be injected in the <head> of the document. Include <script> tags."
       },
       {
-        "type": "range",
-        "id": "spacing_grid_vertical",
-        "min": 8,
-        "max": 40,
-        "step": 4,
-        "default": 20,
-        "label": "Vertical space between grid items",
-        "unit": "px"
-      }
-    ]
-  },
-  {
-    "name": "Buttons",
-    "settings": [
-      {
-        "type": "range",
-        "id": "button_border_radius",
-        "min": 0,
-        "max": 40,
-        "step": 2,
-        "unit": "px",
-        "label": "Border radius",
-        "default": 0
+        "type": "textarea",
+        "id": "custom_footer_scripts",
+        "label": "Custom Footer Scripts",
+        "info": "Add scripts to be injected before the closing </body> tag. Include <script> tags."
       }
     ]
   }

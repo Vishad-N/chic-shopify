@@ -1,5 +1,6 @@
-<footer class="footer section-padding" style="background-color: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }};">
-  <div class="page-width">
+<footer class="footer section-padding bg-texture" style="background-color: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }}; position: relative; overflow: hidden;">
+  {% render 'botanical-footer-bg' %}
+  <div class="page-width" style="position: relative; z-index: 1;">
     <div class="grid grid--2-col grid--4-col">
       {%- for block in section.blocks -%}
         <div class="grid__item footer__block" {{ block.shopify_attributes }}>

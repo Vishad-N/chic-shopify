@@ -1,4 +1,6 @@
-<div class="testimonials section-padding" style="background-color: {{ section.settings.color_bg }};">
+<div class="testimonials section-padding bg-texture" style="background-color: {{ section.settings.color_bg }}; position: relative; overflow: hidden;">
+  {% render 'botanical-corner', class: 'corner-top-left' %}
+  {% render 'botanical-corner', class: 'corner-bottom-right' %}
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
       <div class="section-heading text-center">

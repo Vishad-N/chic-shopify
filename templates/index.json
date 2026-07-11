@@ -1,18 +1,29 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "hero_height": "medium",
+        "image": "shopify://shop_images/Gemini_Generated_Image_9ue1me9ue1me9ue1.png",
+        "hero_height": "large",
         "overlay_opacity": 30,
-        "heading": "Luxury Botanical Beauty Crafted by Nature",
-        "subheading": "<p>Pure botanical skincare rituals inspired by nature and perfected with science.<\/p>",
+        "eyebrow": ".",
+        "heading": "Luxury Botanical<br>Beauty Crafted<br>by Nature",
+        "subheading": "<p>Pure botanical skincare rituals inspired by nature and perfected with science.</p>",
         "content_alignment": "text-center",
         "color_text": "#ffffff",
         "button_1_label": "Shop Collection",
-        "button_1_link": "shopify:\/\/collections\/all",
+        "button_1_link": "shopify://collections/all",
         "button_2_label": "Discover Our Story",
-        "button_2_link": "shopify:\/\/pages\/about"
+        "button_2_link": "shopify://pages/about"
       }
     },
     "featured_collections": {
@@ -21,25 +32,29 @@
         "collection_1": {
           "type": "collection",
           "settings": {
-            "heading": "Hair Care"
+            "collection": "mothers-choice",
+            "heading": "Mother's Choice"
           }
         },
         "collection_2": {
           "type": "collection",
           "settings": {
-            "heading": "Skin Care"
+            "collection": "ayurvedic",
+            "heading": "Ayurvedic"
           }
         },
         "collection_3": {
           "type": "collection",
           "settings": {
-            "heading": "Body Care"
+            "collection": "plant-based",
+            "heading": "Plant Based"
           }
         },
         "collection_4": {
           "type": "collection",
           "settings": {
-            "heading": "Gift Sets"
+            "collection": "skin-care",
+            "heading": "Skin Care"
           }
         }
       },
@@ -51,7 +66,7 @@
       ],
       "settings": {
         "heading": "FEATURED COLLECTIONS",
-        "color_bg": "#f9f6f0",
+        "color_bg": "#faf7f2",
         "image_radius": 16
       }
     },
@@ -60,21 +75,23 @@
       "settings": {
         "heading": "BEST SELLERS",
         "subheading": "Premium product slider",
+        "collection": "plant-based",
         "products_to_show": 8,
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": true,
-        "color_bg": "#f9f6f0"
+        "color_bg": "#f5f1eb"
       }
     },
     "brand_philosophy": {
       "type": "brand-philosophy",
       "settings": {
-        "quote": "<p>Nature is not a luxury. It is a necessity.<\/p>",
+        "image": "shopify://shop_images/Screenshot_2026-07-10_153438.png",
+        "image_radius": 16,
+        "quote": "<p>Nature is not a luxury. It is a necessity.</p>",
         "heading": "BRAND PHILOSOPHY",
-        "description": "<p>In nature, fine botanical products cater to your senses...<\/p>",
-        "color_bg": "#f9f6f0",
-        "image_radius": 16
+        "description": "<p>In nature, fine botanical products cater to your senses...</p>",
+        "color_bg": "#f8f6f1"
       }
     },
     "botanical_ingredients": {
@@ -83,6 +100,7 @@
         "ingredient_1": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_hygytyhygytyhygy-removebg-preview.png",
             "title": "Neem",
             "description": "Reveal on hover",
             "details": "Deeply purifies and soothes skin with natural antibacterial properties."
@@ -91,6 +109,7 @@
         "ingredient_2": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_qehlxeqehlxeqehl-Photoroom.png",
             "title": "Rosehip",
             "description": "Reveal on hover",
             "details": "Rich in vitamins and essential fatty acids for regeneration."
@@ -99,6 +118,7 @@
         "ingredient_3": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_358oey358oey358o-Photoroom.png",
             "title": "Calendula",
             "description": "Reveal on hover",
             "details": "Calms sensitive skin and promotes healing."
@@ -107,6 +127,7 @@
         "ingredient_4": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_u0xac2u0xac2u0xa-Photoroom.png",
             "title": "Evening Primrose",
             "description": "Reveal on hover",
             "details": "Intensely nourishes and improves skin elasticity."
@@ -121,7 +142,7 @@
       ],
       "settings": {
         "heading": "BOTANICAL INGREDIENTS",
-        "color_bg": "#f9f6f0",
+        "color_bg": "#faf7f2",
         "card_radius": 16
       }
     },
@@ -131,29 +152,37 @@
         "step_1": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/Screenshot2026-07-10174426.png",
             "time": "Morning",
-            "step_name": "Cleanser"
+            "step_name": "Cleanser",
+            "product": ""
           }
         },
         "step_2": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/Screenshot2026-07-10163136.png",
             "time": "Morning",
-            "step_name": "Serum"
+            "step_name": "Serum",
+            "product": ""
           }
         },
         "step_3": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/Screenshot2026-07-10175521.png",
             "time": "Morning/Night",
-            "step_name": "Cream"
+            "step_name": "Cream",
+            "product": ""
           }
         },
         "step_4": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/Screenshot2026-07-10174946.png",
             "time": "Night",
-            "step_name": "Night Care"
+            "step_name": "Night Care",
+            "product": ""
           }
         }
       },
@@ -165,7 +194,7 @@
       ],
       "settings": {
         "heading": "COMPLETE SKINCARE RITUAL",
-        "color_bg": "#f9f6f0"
+        "color_bg": "#f5f1eb"
       }
     },
     "why_choose_chic": {
@@ -174,22 +203,23 @@
         "icon_1": {
           "type": "icon_card",
           "settings": {
+            "image": "shopify://shop_images/thick-lush-green-forest.jpg",
             "title": "100% Botanical",
-            "description": "<p>Luxury from nature.<\/p>"
+            "description": "<p>Luxury from nature.</p>"
           }
         },
         "icon_2": {
           "type": "icon_card",
           "settings": {
             "title": "Cruelty Free",
-            "description": "<p>Never tested on animals.<\/p>"
+            "description": "<p>Never tested on animals.</p>"
           }
         },
         "icon_3": {
           "type": "icon_card",
           "settings": {
             "title": "Ayurveda Wisdom",
-            "description": "<p>Ancient holistic balance.<\/p>"
+            "description": "<p>Ancient holistic balance.</p>"
           }
         }
       },
@@ -200,7 +230,7 @@
       ],
       "settings": {
         "heading": "WHY CHOOSE CHIC",
-        "color_bg": "#f9f6f0",
+        "color_bg": "#f8f6f1",
         "card_radius": 16
       }
     },
@@ -242,21 +272,61 @@
       ],
       "settings": {
         "heading": "TESTIMONIALS",
-        "color_bg": "#f9f6f0",
+        "color_bg": "#faf7f2",
         "card_radius": 16
       }
     },
     "instagram_feed": {
       "type": "instagram-feed",
       "blocks": {
-        "img_1": { "type": "image" },
-        "img_2": { "type": "image" },
-        "img_3": { "type": "image" },
-        "img_4": { "type": "image" },
-        "img_5": { "type": "image" },
-        "img_6": { "type": "image" },
-        "img_7": { "type": "image" },
-        "img_8": { "type": "image" }
+        "img_1": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_2": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_3": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_4": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_5": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_6": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_7": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "img_8": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        }
       },
       "block_order": [
         "img_1",
@@ -270,7 +340,7 @@
       ],
       "settings": {
         "heading": "INSTAGRAM",
-        "color_bg": "#f9f6f0",
+        "color_bg": "#f5f1eb",
         "grid_gap": 16,
         "image_radius": 16
       }
@@ -279,7 +349,7 @@
       "type": "newsletter",
       "settings": {
         "heading": "NEWSLETTER",
-        "subheading": "<p>Join the Botanical Circle.<\/p>",
+        "subheading": "<p>Join the Botanical Circle.</p>",
         "color_bg": "#2b4c3b",
         "color_text": "#ffffff"
       }

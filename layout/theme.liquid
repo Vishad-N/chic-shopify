@@ -7,6 +7,9 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -38,13 +41,13 @@
         --color-button: {{ settings.color_button }};
         --color-button-text: {{ settings.color_button_text }};
 
-        --font-heading-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-        --font-heading-style: {{ settings.font_heading.style }};
-        --font-heading-weight: {{ settings.font_heading.weight }};
+        --font-heading-family: "Cormorant Garamond", serif;
+        --font-heading-style: normal;
+        --font-heading-weight: 500;
 
-        --font-body-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
-        --font-body-style: {{ settings.font_body.style }};
-        --font-body-weight: {{ settings.font_body.weight }};
+        --font-body-family: "Manrope", sans-serif;
+        --font-body-style: normal;
+        --font-body-weight: 400;
 
         --page-width: {{ settings.page_width | append: 'px' }};
         --spacing-grid-horizontal: {{ settings.spacing_grid_horizontal | append: 'px' }};
@@ -53,11 +56,40 @@
         --button-border-radius: {{ settings.button_border_radius | append: 'px' }};
       }
 
-      {{ settings.font_heading | font_face: font_display: 'swap' }}
-      {{ settings.font_body | font_face: font_display: 'swap' }}
     {%- endstyle -%}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    {%- if settings.custom_head_scripts != blank -%}
+      {{ settings.custom_head_scripts }}
+    {%- endif -%}
+
+    {%- if settings.custom_css != blank -%}
+      <style>
+        {{ settings.custom_css }}
+      </style>
+    {%- endif -%}
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": {{ shop.name | json }},
+        {% if settings.logo %}
+          "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+        {% endif %}
+        "sameAs": [
+          {{ settings.social_instagram_url | json }},
+          {{ settings.social_facebook_url | json }},
+          {{ settings.social_pinterest_url | json }},
+          {{ settings.social_youtube_url | json }},
+          {{ settings.social_linkedin_url | json }},
+          {{ settings.social_twitter_url | json }},
+          {{ settings.social_tiktok_url | json }}
+        ],
+        "url": {{ request.origin | append: page.url | json }}
+      }
+    </script>
   </head>
 
   <body class="template-{{ template.name | handle }}">
@@ -65,8 +97,10 @@
       {{ "accessibility.skip_to_text" | t }}
     </a>
 
-    {% section 'announcement-bar' %}
-    {% section 'header' %}
+    <div class="header-group-wrapper {% if template.name == 'index' %}is-transparent-on-home{% endif %}">
+      {% section 'announcement-bar' %}
+      {% section 'header' %}
+    </div>
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
@@ -91,5 +125,11 @@
         predictive_search_url: '{{ routes.predictive_search_url }}'
       };
     </script>
+
+    {%- if settings.custom_footer_scripts != blank -%}
+      {{ settings.custom_footer_scripts }}
+    {%- endif -%}
+
+    {% render 'mobile-bottom-nav' %}
   </body>
 </html>

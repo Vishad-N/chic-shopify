@@ -1,49 +1,57 @@
 <div class="hero hero--{{ section.settings.hero_height }}" style="background-color: {{ section.settings.color_bg }};">
-  {%- if section.settings.image != blank -%}
-    <img src="{{ section.settings.image | image_url: width: 2000 }}" 
-         alt="{{ section.settings.image.alt | escape }}" 
-         class="hero__image hero__image--desktop" 
-         loading="eager" 
-         width="2000" 
-         height="{{ 2000 | divided_by: section.settings.image.aspect_ratio | round }}">
-    
-    {%- if section.settings.image_mobile != blank -%}
-      <img src="{{ section.settings.image_mobile | image_url: width: 800 }}" 
-           alt="{{ section.settings.image_mobile.alt | escape }}" 
-           class="hero__image hero__image--mobile" 
+  <div class="hero__image-wrapper">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" 
+           alt="{{ section.settings.image.alt | escape }}" 
+           class="hero__image hero__image--desktop" 
            loading="eager" 
-           width="800" 
-           height="{{ 800 | divided_by: section.settings.image_mobile.aspect_ratio | round }}">
+           width="2000" 
+           height="{{ 2000 | divided_by: section.settings.image.aspect_ratio | round }}">
+      
+      {%- if section.settings.image_mobile != blank -%}
+        <img src="{{ section.settings.image_mobile | image_url: width: 800 }}" 
+             alt="{{ section.settings.image_mobile.alt | escape }}" 
+             class="hero__image hero__image--mobile" 
+             loading="eager" 
+             width="800" 
+             height="{{ 800 | divided_by: section.settings.image_mobile.aspect_ratio | round }}">
+      {%- endif -%}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero__image placeholder-svg' }}
     {%- endif -%}
-  {%- else -%}
-    {{ 'lifestyle-1' | placeholder_svg_tag: 'hero__image placeholder-svg' }}
-  {%- endif -%}
+  </div>
 
-  <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; background-color: #000;"></div>
+  <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%);"></div>
 
   <div class="hero__content-wrapper page-width">
     <div class="hero__content {{ section.settings.content_alignment }}">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="hero__eyebrow hero-animate-up">
+          {{ section.settings.eyebrow | escape }}
+        </div>
+      {%- endif -%}
+
       {%- if section.settings.heading != blank -%}
-        <h1 class="hero__heading" style="color: {{ section.settings.color_text }};">
-          {{ section.settings.heading | escape }}
+        <h1 class="hero__heading hero-animate-up" style="color: {{ section.settings.color_text }}; animation-delay: 0.1s;">
+          {{ section.settings.heading }}
         </h1>
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-        <div class="hero__subheading" style="color: {{ section.settings.color_text }};">
+        <div class="hero__subheading hero-animate-up" style="animation-delay: 0.2s;">
           {{ section.settings.subheading }}
         </div>
       {%- endif -%}
 
       <div class="hero__buttons">
         {%- if section.settings.button_1_label != blank -%}
-          <a href="{{ section.settings.button_1_link }}" class="button">
+          <a href="{{ section.settings.button_1_link }}" class="hero__btn hero__btn--primary hero-animate-up" style="animation-delay: 0.3s;">
             {{ section.settings.button_1_label | escape }}
           </a>
         {%- endif -%}
         {%- if section.settings.button_2_label != blank -%}
-          <a href="{{ section.settings.button_2_link }}" class="button button--secondary" style="color: {{ section.settings.color_text }}; border-color: {{ section.settings.color_text }};">
-            {{ section.settings.button_2_label | escape }} &rarr;
+          <a href="{{ section.settings.button_2_link }}" class="hero__btn hero__btn--secondary hero-animate-up" style="animation-delay: 0.4s;">
+            {{ section.settings.button_2_label | escape }} <span class="arrow">&rarr;</span>
           </a>
         {%- endif -%}
       </div>
@@ -57,20 +65,37 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    width: 100%;
   }
   .hero--small { height: 50vh; }
   .hero--medium { height: 75vh; }
   .hero--large { height: 100vh; }
   
-  .hero__image {
+  @media screen and (min-width: 1025px) {
+    .hero--large { height: 100vh; }
+  }
+  @media screen and (min-width: 750px) and (max-width: 1024px) {
+    .hero--large { height: 85vh; }
+  }
+  @media screen and (max-width: 749px) {
+    .hero--large { height: 100svh; }
+  }
+  
+  .hero__image-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 120%; /* For parallax */
+    transform: translateY(0);
+    will-change: transform;
+    z-index: 1;
+  }
+  .hero__image {
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    z-index: 1;
+    object-position: 70% center;
   }
   .hero__image--mobile {
     display: none;
@@ -78,7 +103,7 @@
   {%- if section.settings.image_mobile != blank -%}
     @media screen and (max-width: 749px) {
       .hero__image--desktop { display: none; }
-      .hero__image--mobile { display: block; }
+      .hero__image--mobile { display: block; object-position: center; }
     }
   {%- endif -%}
 
@@ -89,23 +114,36 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    pointer-events: none;
   }
   .hero__content-wrapper {
     position: relative;
     z-index: 3;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  @media screen and (max-width: 749px) {
+    .hero__content-wrapper {
+      justify-content: center;
+    }
   }
   .hero__content {
-    max-width: 800px;
-    padding: 2rem;
+    max-width: 680px;
+    padding: 0;
   }
   .hero__content.text-center {
-    text-align: center;
-    align-items: center;
+    text-align: left; /* overridden to match editorial layout */
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
+  }
+  @media screen and (max-width: 749px) {
+    .hero__content.text-center {
+      text-align: center;
+      align-items: center;
+    }
   }
   .hero__content.text-left {
     text-align: left;
@@ -115,24 +153,127 @@
     text-align: right;
     margin-left: auto;
   }
+  .hero__eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 24px;
+    margin-top: 50px;
+  }
   .hero__heading {
-    margin-bottom: 1rem;
-    font-size: clamp(32px, 5vw, 64px);
-    line-height: 1.1;
+    margin-bottom: 36px;
+    font-family: var(--font-heading-family);
+    font-size: clamp(48px, 6vw, 86px);
+    line-height: 1;
+    font-weight: 500;
+    max-width: 620px;
   }
   .hero__subheading {
-    margin-bottom: 2rem;
-    font-size: 1.125rem;
+    margin-bottom: 48px;
+    font-family: var(--font-body-family);
+    font-size: clamp(16px, 2vw, 22px);
+    max-width: 520px;
+    color: #F6F4EF;
+    font-weight: 400;
+    line-height: 1.7;
   }
   .hero__buttons {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 28px;
     flex-wrap: wrap;
   }
   .hero__content.text-center .hero__buttons {
+    justify-content: flex-start;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .hero__buttons {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+
+  .hero__btn {
+    font-family: var(--font-body-family);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  
+  .hero__btn--primary {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
+    border-radius: 999px;
+    padding: 0 40px;
+    height: 56px;
+    background-color: #5F715A;
+    color: #FFFFFF;
+    border: none;
+  }
+  .hero__btn--primary:hover {
+    background-color: #4E5D49; /* slightly darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+  
+  .hero__btn--secondary {
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+    padding: 0;
+    height: auto;
+  }
+  .hero__btn--secondary .arrow {
+    margin-left: 8px;
+    transition: transform 0.25s ease;
+  }
+  .hero__btn--secondary:hover {
+    color: #D4B170; /* Champagne Gold */
+  }
+  .hero__btn--secondary:hover .arrow {
+    transform: translateX(4px);
+  }
+  
+  /* Animations */
+  .hero-animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
+
+<script>
+  // Very subtle parallax
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroImage = document.querySelector('.hero__image-wrapper');
+    if (heroImage) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        if (scrolled < window.innerHeight) {
+          heroImage.style.transform = `translateY(${scrolled * 0.15}px)`;
+        }
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
@@ -156,7 +297,7 @@
         { "value": "medium", "label": "Medium" },
         { "value": "large", "label": "Large (Fullscreen)" }
       ],
-      "default": "medium",
+      "default": "large",
       "label": "Section height"
     },
     {
@@ -165,13 +306,18 @@
       "min": 0,
       "max": 100,
       "step": 5,
-      "default": 30,
+      "default": 40,
       "label": "Overlay opacity"
     },
     {
       "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "textarea",
       "id": "heading",
-      "default": "Luxury Botanical Beauty Crafted by Nature",
+      "default": "Luxury Botanical<br>Beauty Crafted<br>by Nature",
       "label": "Heading"
     },
     {

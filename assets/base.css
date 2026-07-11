@@ -134,3 +134,43 @@ ul, ol {
   .grid--3-col .grid__item { width: 33.333%; }
   .grid--4-col .grid__item { width: 25%; }
 }
+
+/* Header Group Wrapper */
+.header-group-wrapper {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+.header-group-wrapper.is-transparent-on-home {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Luxury Botanical Enhancements */
+.bg-texture {
+  position: relative;
+}
+.bg-texture::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+.botanical-card-hover {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.botanical-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+}
+
+.corner-top-right { top: 0; right: 0; transform: scaleX(-1); }
+.corner-top-left { top: 0; left: 0; }
+.corner-bottom-right { bottom: 0; right: 0; transform: scale(-1, -1); }
+.corner-bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }

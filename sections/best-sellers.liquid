@@ -1,4 +1,5 @@
-<div class="best-sellers section-padding" style="background-color: {{ section.settings.color_bg }};">
+<div class="best-sellers section-padding bg-texture" style="background-color: {{ section.settings.color_bg }};">
+  {% render 'botanical-divider' %}
   <div class="page-width">
     <div class="section-heading text-center">
       {%- if section.settings.heading != blank -%}
@@ -10,7 +11,8 @@
     </div>
 
     <div class="slider-wrapper">
-      <ul class="product-slider grid grid--4-col" role="list">
+      {% render 'botanical-vine' %}
+      <ul class="product-slider grid grid--4-col" role="list" style="position: relative; z-index: 1;">
         {%- assign collection = section.settings.collection -%}
         {%- if collection != blank and collection.products_count > 0 -%}
           {%- for product in collection.products limit: section.settings.products_to_show -%}

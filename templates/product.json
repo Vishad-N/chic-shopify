@@ -1,19 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
-          "type": "variant_picker"
+          "type": "variant_picker",
+          "settings": {}
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -22,20 +35,21 @@
           }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "ingredients": {
           "type": "accordion",
           "settings": {
             "heading": "Ingredients",
-            "content": "<p>100% natural and organic ingredients carefully sourced for your skin.<\/p>"
+            "content": "<p>100% natural and organic ingredients carefully sourced for your skin.</p>"
           }
         },
         "how_to_use": {
           "type": "accordion",
           "settings": {
             "heading": "How To Use",
-            "content": "<p>Apply a few drops to clean skin morning and evening.<\/p>"
+            "content": "<p>Apply a few drops to clean skin morning and evening.</p>"
           }
         }
       },

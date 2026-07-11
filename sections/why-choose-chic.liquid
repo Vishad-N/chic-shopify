@@ -1,76 +1,334 @@
-<div class="why-choose section-padding" style="background-color: {{ section.settings.color_bg }};">
-  <div class="page-width">
-    {%- if section.settings.heading != blank -%}
-      <div class="section-heading text-center">
-        <h2>{{ section.settings.heading | escape }}</h2>
-      </div>
-    {%- endif -%}
+<div class="brand-promise section-padding" style="background-color: {{ section.settings.color_bg | default: '#FAF7F2' }};">
+  
+  <!-- Decorative Background Layers -->
+  <div class="promise-bg-texture"></div>
+  <div class="promise-decor-top-left">
+    <svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.02">
+      <!-- Eucalyptus subtle line art -->
+      <path d="M 0 100 Q 40 60 90 0" stroke="#5F715A" stroke-width="1" fill="none" />
+      <path d="M 25 75 Q 15 55 35 45 Q 50 65 25 75" fill="#5F715A" />
+      <path d="M 50 50 Q 40 30 60 20 Q 75 40 50 50" fill="#5F715A" />
+    </svg>
+  </div>
+  <div class="promise-decor-bottom-right">
+    <svg width="220" height="220" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.02">
+      <!-- Fern subtle line art -->
+      <path d="M 100 0 Q 60 40 10 90" stroke="#5F715A" stroke-width="1" fill="none" />
+      <path d="M 80 20 Q 90 40 70 50 Q 60 30 80 20" fill="#5F715A" />
+      <path d="M 60 40 Q 70 60 50 70 Q 40 50 60 40" fill="#5F715A" />
+      <path d="M 40 60 Q 50 80 30 90 Q 20 70 40 60" fill="#5F715A" />
+    </svg>
+  </div>
 
-    <div class="grid grid--3-col">
-      {%- for block in section.blocks -%}
-        <div class="grid__item" {{ block.shopify_attributes }}>
-          <div class="icon-card text-center" style="border-radius: {{ section.settings.card_radius }}px;">
-            <div class="icon-card__icon">
-              {%- if block.settings.image != blank -%}
-                <img src="{{ block.settings.image | image_url: width: 60 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="40" height="auto">
-              {%- else -%}
-                <!-- SVG fallback for botanical icons -->
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22C12 22 17 17 17 12C17 7 12 2 12 2C12 2 7 7 7 12C7 17 12 22 12 22Z"/>
-                </svg>
-              {%- endif -%}
+  <div class="page-width relative-content">
+    <div class="promise-header text-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="promise-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <h3 class="promise-subtitle">{{ section.settings.subtitle | escape }}</h3>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="promise-description">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+      
+      <div class="promise-divider">
+        <span class="promise-divider-line"></span>
+        <svg class="promise-divider-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.4">
+          <path d="M12 22C12 22 20 16 20 9C20 4 12 2 12 2C12 2 4 4 4 9C4 16 12 22 12 22Z" fill="#5F715A"/>
+          <path d="M12 22V12" stroke="#FAF7F2" stroke-width="1.5"/>
+        </svg>
+        <span class="promise-divider-line"></span>
+      </div>
+    </div>
+
+    <div class="promise-pillars-container">
+      <!-- Connecting vine -->
+      <div class="promise-vine"></div>
+
+      <div class="promise-pillars">
+        {%- for block in section.blocks -%}
+          <div class="promise-pillar" {{ block.shopify_attributes }}>
+            <div class="pillar-number">0{{ forloop.index }}</div>
+            
+            <div class="pillar-medallion-wrapper">
+              <div class="pillar-medallion">
+                <div class="pillar-icon">
+                  {%- if block.settings.image != blank -%}
+                    <img src="{{ block.settings.image | image_url: width: 60 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="40" height="auto">
+                  {%- else -%}
+                    {%- case forloop.index -%}
+                      {%- when 1 -%}
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" stroke="#5F715A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 36V20 M20 20C20 20 28 14 30 6C30 6 22 8 20 20 M20 20C20 20 12 14 10 6C10 6 18 8 20 20"/><path d="M20 28C20 28 26 24 28 18C28 18 22 20 20 28 M20 28C20 28 14 24 12 18C12 18 18 20 20 28"/></svg>
+                      {%- when 2 -%}
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" stroke="#5F715A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16c-2 0-3-4-3-8c0-3 3-4 4-2c1 2 0 6 0 8z"/><path d="M22 14c-1-3-1-6 1-8c1-1 3-1 4 1c1 3-1 6-2 7"/><path d="M19 16c-3 1-5 4-5 8c0 5 4 8 10 8c4 0 7-1 9-4c1-2 1-4 0-6c-2-3-4-4-7-4"/><path d="M11 32c-2 0-3-2-2-4c1-2 4-2 5-2"/><circle cx="21" cy="18" r="0.5" fill="#5F715A" stroke="none"/></svg>
+                      {%- else -%}
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" stroke="#5F715A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20 L30 20 C30 28 26 32 20 32 C14 32 10 28 10 20 Z"/><path d="M14 10 L26 24"/><path d="M20 20 C20 20 16 14 12 14 C12 14 14 18 20 20"/><path d="M22 20 C22 20 26 12 30 12 C30 12 28 18 22 20"/></svg>
+                    {%- endcase -%}
+                  {%- endif -%}
+                </div>
+              </div>
             </div>
-            <h3 class="icon-card__title">{{ block.settings.title | escape }}</h3>
+
+            <h3 class="pillar-title">{{ block.settings.title | escape }}</h3>
             {%- if block.settings.description != blank -%}
-              <div class="icon-card__description">
+              <div class="pillar-description">
                 {{ block.settings.description }}
               </div>
             {%- endif -%}
           </div>
-        </div>
-      {%- endfor -%}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  .why-choose .section-heading h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Manrope:wght@400;500;600&display=swap');
+
+  .brand-promise {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+    font-family: 'Manrope', sans-serif;
   }
-  .icon-card {
-    background-color: #fff;
-    padding: 2.5rem 2rem;
-    height: 100%;
-    border: 1px solid rgba(0,0,0,0.05);
+
+  /* Background & Decoration */
+  .promise-bg-texture {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"), 
+      radial-gradient(circle at center, rgba(138, 149, 127, 0.02) 0%, rgba(250, 247, 242, 0) 80%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .promise-decor-top-left, .promise-decor-bottom-right {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .promise-decor-top-left { top: -30px; left: -30px; }
+  .promise-decor-bottom-right { bottom: -30px; right: -30px; }
+
+  .relative-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header Text */
+  .promise-header {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .promise-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: #2C2A28;
+    letter-spacing: 0.08em;
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .promise-subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #5F715A;
+    margin-top: 32px;
+    margin-bottom: 0;
+  }
+
+  .promise-description {
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #5C5A57;
+    margin-top: 28px;
+  }
+  .promise-description p {
+    margin: 0;
+  }
+
+  /* Divider */
+  .promise-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+    margin-bottom: 70px;
+  }
+  .promise-divider-line {
+    height: 1px;
+    width: 80px;
+    background-color: rgba(95,113,90,0.4);
+  }
+
+  /* Trust Pillars Container */
+  .promise-pillars-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Connecting Vine */
+  .promise-vine {
+    position: absolute;
+    /* Center of the medallion calculation: number(32px) + margin(15px) + half-medallion(36px) = 83px */
+    top: 73px; 
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='20' viewBox='0 0 200 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 50 0 100 10 T 200 10' stroke='%235F715A' stroke-width='2' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: center;
+    z-index: 1;
+  }
+
+  /* Pillars Grid */
+  .promise-pillars {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+
+  .promise-pillar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  /* Number */
+  .pillar-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: rgba(95,113,90,0.35);
+    margin-bottom: 15px;
+    line-height: 1;
+  }
+
+  /* Medallion */
+  .pillar-medallion-wrapper {
+    margin-bottom: 25px;
+  }
+
+  .pillar-medallion {
+    width: 72px;
+    height: 72px;
+    background-color: #FAF7F2;
+    border: 1px solid rgba(95,113,90,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04), inset 0 2px 4px rgba(255,255,255,0.6);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .pillar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.3s ease;
   }
-  .icon-card:hover {
-    transform: translateY(-5px);
+
+  /* Headings and Body inside pillars */
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: #2C2A28;
+    margin: 0 0 12px 0;
+    transition: color 0.3s ease;
+    line-height: 1.2;
   }
-  .icon-card__icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    color: var(--color-primary);
+
+  .pillar-description {
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #6A6A6A;
   }
-  .icon-card__title {
-    font-size: 1.125rem;
-    margin-bottom: 0.5rem;
-  }
-  .icon-card__description {
-    font-size: 0.9rem;
-    opacity: 0.7;
+  .pillar-description p {
     margin: 0;
+  }
+
+  /* Hover Effects */
+  .promise-pillar:hover .pillar-medallion {
+    transform: translateY(-6px);
+    border-color: rgba(95,113,90,0.4);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06), inset 0 2px 4px rgba(255,255,255,0.6);
+  }
+  .promise-pillar:hover .pillar-title {
+    color: #5F715A;
+  }
+  .promise-pillar:hover .pillar-icon {
+    transform: rotate(3deg);
+  }
+
+  /* Responsive Design */
+  /* Desktop */
+  @media screen and (min-width: 990px) {
+    .promise-heading {
+      font-size: 54px;
+    }
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    .promise-heading {
+      font-size: 38px;
+    }
+    .promise-pillars {
+      gap: 20px;
+    }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .promise-heading {
+      font-size: 30px;
+    }
+    
+    .promise-pillars {
+      flex-direction: column;
+      gap: 60px;
+    }
+    
+    .promise-vine {
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='200' viewBox='0 0 20 200' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0 Q 0 50 10 100 T 10 200' stroke='%235F715A' stroke-width='2' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-position: center top;
+    }
+    
+    .promise-pillar {
+      padding: 0;
+    }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Why Choose Chic",
+  "name": "Brand Promise",
   "settings": [
     {
       "type": "text",
@@ -79,26 +337,28 @@
       "label": "Heading"
     },
     {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Nature. Science. Ritual.",
+      "label": "Subtitle"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Every CHIC formulation begins with carefully selected botanical ingredients, inspired by centuries of Ayurvedic wisdom and refined through modern skincare research to create rituals that nurture healthy, radiant skin.</p>",
+      "label": "Description"
+    },
+    {
       "type": "color",
       "id": "color_bg",
       "label": "Background",
       "default": "#f9f6f0"
-    },
-    {
-      "type": "range",
-      "id": "card_radius",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "default": 16,
-      "unit": "px",
-      "label": "Card border radius"
     }
   ],
   "blocks": [
     {
       "type": "icon_card",
-      "name": "Icon Card",
+      "name": "Trust Pillar",
       "settings": [
         {
           "type": "image_picker",
@@ -122,11 +382,11 @@
   ],
   "presets": [
     {
-      "name": "Why Choose Chic",
+      "name": "Brand Promise",
       "blocks": [
-        { "type": "icon_card", "settings": { "title": "100% Botanical" } },
-        { "type": "icon_card", "settings": { "title": "Cruelty Free" } },
-        { "type": "icon_card", "settings": { "title": "Ayurveda Wisdom" } }
+        { "type": "icon_card", "settings": { "title": "100% Botanical", "description": "<p>Luxury from nature.</p>" } },
+        { "type": "icon_card", "settings": { "title": "Cruelty Free", "description": "<p>Never tested on animals.</p>" } },
+        { "type": "icon_card", "settings": { "title": "Ayurveda Wisdom", "description": "<p>Ancient botanical traditions.</p>" } }
       ]
     }
   ]

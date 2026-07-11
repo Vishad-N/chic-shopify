@@ -1,4 +1,4 @@
-<div class="botanical-ingredients section-padding" style="background-color: {{ section.settings.color_bg }};">
+<div class="botanical-ingredients section-padding bg-texture" style="background-color: {{ section.settings.color_bg }};">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
       <div class="section-heading text-center">
@@ -9,16 +9,17 @@
     <div class="grid grid--2-col grid--4-col">
       {%- for block in section.blocks -%}
         <div class="grid__item" {{ block.shopify_attributes }}>
-          <div class="ingredient-card" style="border-radius: {{ section.settings.card_radius }}px; background-color: #fff; padding: 2rem; text-align: center; height: 100%; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden;">
-            <div class="ingredient-card__image">
+          <div class="ingredient-card botanical-card-hover" style="border-radius: {{ section.settings.card_radius }}px; background: radial-gradient(circle at center, #ffffff 0%, #FAF7F2 100%); padding: 2rem; text-align: center; height: 100%; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden;">
+            {% render 'botanical-watermark' %}
+            <div class="ingredient-card__image" style="position: relative; z-index: 1;">
               {%- if block.settings.image != blank -%}
                 <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="120" height="auto" style="margin: 0 auto; display: block;">
               {%- else -%}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
             </div>
-            <h3 class="ingredient-card__title">{{ block.settings.title | escape }}</h3>
-            <p class="ingredient-card__description">{{ block.settings.description | escape }}</p>
+            <h3 class="ingredient-card__title" style="position: relative; z-index: 1;">{{ block.settings.title | escape }}</h3>
+            <p class="ingredient-card__description" style="position: relative; z-index: 1;">{{ block.settings.description | escape }}</p>
 
             <div class="ingredient-card__popup">
               <div class="ingredient-card__popup-inner">

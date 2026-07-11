@@ -1,8 +1,42 @@
-<div class="skincare-ritual section-padding" style="background-color: {{ section.settings.color_bg }};">
-  <div class="page-width">
+<div class="skincare-ritual section-padding" style="background-color: {{ section.settings.color_bg | default: '#FAF7F2' }};">
+  
+  <!-- Decorative Background Layers -->
+  <div class="ritual-bg-texture"></div>
+  <div class="ritual-decor-top-left">
+    <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.04">
+      <path d="M 0 100 Q 30 70 80 10" stroke="#5F715A" stroke-width="1.5" fill="none" />
+      <path d="M 20 80 Q 15 65 30 55 Q 40 70 20 80" fill="#5F715A" />
+      <path d="M 40 60 Q 35 45 50 35 Q 60 50 40 60" fill="#5F715A" />
+      <path d="M 60 40 Q 55 25 70 15 Q 80 30 60 40" fill="#5F715A" />
+    </svg>
+  </div>
+  <div class="ritual-decor-bottom-right">
+    <svg width="160" height="160" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.03">
+      <path d="M 100 0 Q 70 30 10 90" stroke="#5F715A" stroke-width="1.5" fill="none" />
+      <path d="M 80 20 Q 95 35 85 45 Q 70 30 80 20" fill="#5F715A" />
+      <path d="M 60 40 Q 75 55 65 65 Q 50 50 60 40" fill="#5F715A" />
+      <path d="M 40 60 Q 55 75 45 85 Q 30 70 40 60" fill="#5F715A" />
+    </svg>
+  </div>
+  <div class="ritual-decor-center">
+    <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.02">
+      <path d="M 100 500 C 150 300 350 200 400 0" stroke="#5F715A" stroke-width="1" fill="none" />
+      <path d="M -50 400 C 50 250 250 150 450 100" stroke="#5F715A" stroke-width="1" fill="none" />
+    </svg>
+  </div>
+
+  <div class="page-width relative-content">
     {%- if section.settings.heading != blank -%}
       <div class="section-heading text-center">
         <h2>{{ section.settings.heading | escape }}</h2>
+        <div class="ritual-divider">
+          <span class="ritual-divider-line"></span>
+          <svg class="ritual-divider-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C12 22 20 16 20 9C20 4 12 2 12 2C12 2 4 4 4 9C4 16 12 22 12 22Z" fill="#5F715A"/>
+            <path d="M12 22V12" stroke="#FAF7F2" stroke-width="1.5"/>
+          </svg>
+          <span class="ritual-divider-line"></span>
+        </div>
       </div>
     {%- endif -%}
 
@@ -12,18 +46,27 @@
       <div class="ritual-timeline__nodes">
         {%- for block in section.blocks -%}
           <div class="ritual-node" {{ block.shopify_attributes }}>
-            <div class="ritual-node__icon">
-              {%- if block.settings.image != blank -%}
-                <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.step_name | escape }}" loading="lazy" width="60" height="auto">
-              {%- else -%}
-                <div class="ritual-node__placeholder"></div>
-              {%- endif -%}
+            
+            <div class="ritual-node__medallion-wrapper">
+              <div class="ritual-node__connector">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M3 12C3 12 8 4 12 4C16 4 21 12 21 12C21 12 16 20 12 20C8 20 3 12 3 12Z" fill="#8A957F"/>
+                 </svg>
+              </div>
+              <div class="ritual-node__medallion">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 240, height: 240, crop: 'center' }}" alt="{{ block.settings.step_name | escape }}" loading="lazy" class="ritual-node__image">
+                {%- else -%}
+                  <div class="ritual-node__placeholder"></div>
+                {%- endif -%}
+              </div>
             </div>
+
             <div class="ritual-node__content">
               <span class="ritual-node__time">{{ block.settings.time }}</span>
               <h4 class="ritual-node__title">{{ block.settings.step_name | escape }}</h4>
               {%- if block.settings.product != blank -%}
-                <a href="{{ block.settings.product.url }}" class="link ritual-node__link">View Product &rarr;</a>
+                <a href="{{ block.settings.product.url }}" class="link ritual-node__link">View Product</a>
               {%- endif -%}
             </div>
           </div>
@@ -34,102 +77,290 @@
 </div>
 
 <style>
-  .skincare-ritual .section-heading h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 1.5rem;
-    margin-bottom: 4rem;
+  /* Core Variables & Imports */
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@600&display=swap');
+
+  .skincare-ritual {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0; /* Add top/bottom padding to breathe */
   }
+
+  /* Decorative Backgrounds */
+  .ritual-bg-texture {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Subtle paper texture + watercolor wash gradient */
+    background-image: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"), 
+      radial-gradient(circle at center, rgba(138, 149, 127, 0.02) 0%, rgba(250, 247, 242, 0) 80%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .ritual-decor-top-left, .ritual-decor-bottom-right, .ritual-decor-center {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .ritual-decor-top-left { top: -20px; left: -20px; }
+  .ritual-decor-bottom-right { bottom: -20px; right: -20px; }
+  .ritual-decor-center { 
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%; height: 100%; 
+    display: flex; justify-content: center; align-items: center; 
+  }
+
+  .relative-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Typography & Titles */
+  .skincare-ritual .section-heading h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; /* Title size can be adjusted based on theme */
+    font-weight: 500;
+    color: #2C2A28;
+    margin-bottom: 20px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  @media screen and (min-width: 750px) {
+    .skincare-ritual .section-heading h2 {
+      font-size: 42px;
+    }
+  }
+
+  /* Divider */
+  .ritual-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 70px;
+  }
+  .ritual-divider-line {
+    height: 1px;
+    width: 60px;
+    background-color: rgba(95,113,90,0.3);
+  }
+
+  /* Timeline Container */
   .ritual-timeline {
     position: relative;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 2rem 0;
   }
+
+  /* Vine Line Desktop */
   .ritual-timeline__line {
     position: absolute;
-    top: 50px;
+    top: 60px; /* Center of the 120px medallion */
     left: 0;
     right: 0;
-    height: 2px;
-    background-color: rgba(0,0,0,0.1);
+    height: 20px;
+    /* Botanical green organic line, slightly thicker stroke-width 2 */
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='20' viewBox='0 0 120 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10C30 0 30 20 60 10C90 0 90 20 120 10' stroke='%238A957F' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: center;
     z-index: 1;
   }
+
+  /* Timeline Nodes */
   .ritual-timeline__nodes {
     display: flex;
     justify-content: space-between;
     position: relative;
     z-index: 2;
   }
-  @media screen and (max-width: 749px) {
-    .ritual-timeline__line {
-      top: 0;
-      bottom: 0;
-      left: 50px;
-      right: auto;
-      width: 2px;
-      height: 100%;
-    }
-    .ritual-timeline__nodes {
-      flex-direction: column;
-      gap: 3rem;
-    }
-    .ritual-node {
-      flex-direction: row;
-      align-items: center;
-      text-align: left !important;
-      gap: 1.5rem;
-    }
-  }
+
   .ritual-node {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     flex: 1;
+    position: relative;
   }
-  .ritual-node__icon {
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
+
+  /* Wrapper for relative positioning of connector */
+  .ritual-node__medallion-wrapper {
+    position: relative;
+    margin-bottom: 45px; /* Timeline down to labels spacing */
+  }
+
+  /* Tiny botanical connector */
+  .ritual-node__connector {
+    position: absolute;
+    top: 50%;
+    left: -12px;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+  .ritual-node:first-child .ritual-node__connector {
+    display: none;
+  }
+
+  /* Luxury Product Medallion */
+  .ritual-node__medallion {
+    width: 120px;
+    height: 120px;
+    /* Subtle champagne-gold radial halo blending into Warm Ivory */
+    background: radial-gradient(circle, rgba(212,177,112,0.08) 0%, #FAF7F2 70%);
     border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(95,113,90,0.18);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    /* Soft premium shadow and inner highlight */
+    box-shadow: 0 18px 40px rgba(0,0,0,0.06), inset 0 2px 4px rgba(255,255,255,0.7);
+    padding: 12px; /* Internal breathing room */
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
   }
-  .ritual-node:hover .ritual-node__icon {
-    transform: scale(1.1);
-  }
-  .ritual-node__placeholder {
-    width: 40px;
-    height: 40px;
-    background-color: var(--color-secondary);
+
+  .ritual-node__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     border-radius: 50%;
-    opacity: 0.5;
+    transition: transform 0.25s ease;
   }
+
+  .ritual-node__placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(95,113,90,0.05);
+    border-radius: 50%;
+  }
+
+  /* Content Typography */
   .ritual-node__time {
-    font-size: 0.75rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-primary);
+    color: #5F715A;
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 8px; /* Spacing: Time Label -> Product Name */
   }
+
   .ritual-node__title {
-    font-size: 1.125rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 500;
+    color: #2C2A28;
+    margin-top: 0;
+    margin-bottom: 8px;
+    transition: color 0.25s ease;
+    line-height: 1.1;
   }
+
   .ritual-node__link {
-    font-size: 0.85rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
     text-decoration: underline;
-    opacity: 0.8;
+    color: #5F715A;
+    opacity: 0.7;
+    transition: opacity 0.25s ease;
   }
   .ritual-node__link:hover {
     opacity: 1;
+  }
+
+  /* Hover Effects */
+  .ritual-node:hover .ritual-node__medallion {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 45px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,0.7);
+    background: radial-gradient(circle, rgba(212,177,112,0.15) 0%, #FAF7F2 70%);
+  }
+  .ritual-node:hover .ritual-node__image {
+    transform: scale(1.03);
+  }
+  .ritual-node:hover .ritual-node__title {
+    color: #5F715A;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 989px) { /* Tablet */
+    .ritual-timeline__nodes {
+      gap: 15px;
+    }
+    .ritual-timeline__line {
+      top: 50px; /* Center of 100px medallion */
+    }
+    .ritual-node__medallion {
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+    }
+    .ritual-node__title {
+      font-size: 28px;
+    }
+  }
+
+  @media screen and (max-width: 749px) { /* Mobile */
+    .ritual-timeline__nodes {
+      flex-direction: column;
+      gap: 50px;
+    }
+    
+    .ritual-timeline__line {
+      top: 0;
+      bottom: 0;
+      left: 40px; /* Center of 80px medallion (padding left + half width) */
+      right: auto;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='120' viewBox='0 0 20 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0C0 30 20 30 10 60C0 90 20 90 10 120' stroke='%238A957F' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-position: center top;
+    }
+    
+    .ritual-node {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 25px; /* Spacing between medallion and content */
+    }
+    
+    .ritual-node__medallion-wrapper {
+      margin-bottom: 0; /* Remove vertical margin */
+      flex-shrink: 0;
+    }
+    
+    .ritual-node__medallion {
+      width: 80px;
+      height: 80px;
+      padding: 8px;
+    }
+
+    /* Adjust connector for vertical timeline */
+    .ritual-node__connector {
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%) rotate(90deg);
+    }
+    
+    .ritual-node__content {
+      /* Mobile adjustment for spacing */
+      padding-top: 5px;
+    }
+    
+    .ritual-node__time {
+      margin-bottom: 4px;
+    }
+    .ritual-node__title {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
   }
 </style>
 
@@ -193,3 +424,4 @@
   ]
 }
 {% endschema %}
+

@@ -3,9 +3,13 @@
     .announcement-bar {
       background-color: {{ section.settings.color_bg }};
       text-align: center;
-      padding: 8px 16px;
+      padding: 0 16px;
       position: relative;
       z-index: 10;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .announcement-bar__message {
       color: {{ section.settings.color_text }};
@@ -57,7 +61,7 @@
       "type": "color",
       "id": "color_bg",
       "label": "Background",
-      "default": "#8a967a"
+      "default": "#4E5D49"
     },
     {
       "type": "color",
