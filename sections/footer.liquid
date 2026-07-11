@@ -1,103 +1,153 @@
 <footer class="footer section-padding bg-texture" style="background-color: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }}; position: relative; overflow: hidden;">
   {% render 'botanical-footer-bg' %}
+  
+  <!-- Subtle Botanical Corners -->
+  <svg class="footer-botanical-corner footer-botanical-corner--tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C80,20 160,80 180,180 C150,140 80,100 0,80 Z" fill="currentColor" />
+  </svg>
+  <svg class="footer-botanical-corner footer-botanical-corner--br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M200,200 C120,180 40,120 20,20 C50,60 120,100 200,120 Z" fill="currentColor" />
+  </svg>
+
   <div class="page-width" style="position: relative; z-index: 1;">
-    <div class="grid grid--2-col grid--4-col">
-      {%- for block in section.blocks -%}
-        <div class="grid__item footer__block" {{ block.shopify_attributes }}>
-          {%- if block.settings.heading != blank -%}
-            <h4 class="footer__heading" style="color: inherit;">{{ block.settings.heading | escape }}</h4>
+    <div class="footer__grid">
+      
+      <!-- COLUMN 1: BRAND -->
+      <div class="footer__column footer__column--brand">
+        <a href="{{ routes.root_url }}" class="footer__logo-link">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 160 }}" alt="CHIC Logo" width="160" height="auto" loading="lazy" class="footer__logo-img">
+          {%- else -%}
+            <h2 class="footer__logo-text">CHIC</h2>
           {%- endif -%}
-
-          {%- case block.type -%}
-            {%- when 'link_list' -%}
-              {%- if block.settings.menu != blank -%}
-                <ul class="footer__list list-unstyled">
-                  {%- for link in block.settings.menu.links -%}
-                    <li>
-                      <a href="{{ link.url }}" class="link list-menu__item--link">{{ link.title }}</a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
-
-            {%- when 'text' -%}
-              <div class="footer__text">
-                {{ block.settings.subtext }}
-              </div>
-
-            {%- when 'newsletter' -%}
-              <div class="footer__newsletter">
-                {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter-form' -%}
-                  <input type="hidden" name="contact[tags]" value="newsletter">
-                  <div class="newsletter-form__field-wrapper">
-                    <div class="field">
-                      <input
-                        id="NewsletterForm--{{ section.id }}"
-                        type="email"
-                        name="contact[email]"
-                        class="field__input"
-                        value="{{ form.email }}"
-                        aria-required="true"
-                        autocorrect="off"
-                        autocapitalize="off"
-                        autocomplete="email"
-                        {% if form.errors %}
-                          autofocus
-                          aria-invalid="true"
-                          aria-describedby="ContactFooter-error"
-                        {% elsif form.posted_successfully? %}
-                          aria-describedby="ContactFooter-success"
-                        {% endif %}
-                        placeholder="{{ 'newsletter.label' | t }}"
-                        required
-                      >
-                      <button type="submit" class="newsletter-form__button field__button button" name="commit" id="Subscribe">
-                        {{ 'newsletter.button_label' | t }}
-                      </button>
-                    </div>
-                  </div>
-                {%- endform -%}
-              </div>
-          {%- endcase -%}
+        </a>
+        <p class="footer__brand-description">
+          Luxury botanical skincare inspired by nature and perfected through Ayurvedic wisdom.
+        </p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram" class="footer__social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="footer__social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" aria-label="Pinterest" class="footer__social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85 1.05 6.47 2.76A9 9 0 0 1 21 12z"></path><path d="M12 21a9 9 0 0 1-4.71-1.39L8 16l-1 4a9 9 0 0 1-5-7.5C2 7.8 6.48 4 12 4s10 4.48 10 10-4.48 10-10 10c-.57 0-1.12-.05-1.65-.14L12 21z"></path><line x1="12" y1="12" x2="12" y2="12.01"></line></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="footer__social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.13 1 12 1 12s0 3.87.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.87 23 12 23 12s0-3.87-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+          </a>
         </div>
-      {%- endfor -%}
+      </div>
+
+      <!-- COLUMN 2: USEFUL LINKS -->
+      <div class="footer__column footer__column--links">
+        <h4 class="footer__heading">Useful Links</h4>
+        <ul class="footer__list list-unstyled">
+          <li><a href="/pages/about-us" class="footer__link">About Us</a></li>
+          <li><a href="/pages/privacy-policy" class="footer__link">Privacy Policy</a></li>
+          <li><a href="/pages/return-policy" class="footer__link">Return Policy</a></li>
+          <li><a href="/pages/shipping-policy" class="footer__link">Shipping Policy</a></li>
+          <li><a href="/pages/terms-conditions" class="footer__link">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 3: CONTACT US -->
+      <div class="footer__column footer__column--contact">
+        <h4 class="footer__heading">Contact Us</h4>
+        <ul class="footer__contact-list list-unstyled">
+          <li>
+            <span class="footer__contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </span>
+            <div class="footer__contact-text">
+              <strong class="footer__contact-label">Call:</strong><br>+91 - 8878280711
+            </div>
+          </li>
+          <li>
+            <span class="footer__contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </span>
+            <div class="footer__contact-text">
+              <strong class="footer__contact-label">WhatsApp:</strong><br>+91 - 8878280711
+            </div>
+          </li>
+          <li>
+            <span class="footer__contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </span>
+            <div class="footer__contact-text">
+              <strong class="footer__contact-label">Customer Support Time:</strong><br>24/7
+            </div>
+          </li>
+          <li>
+            <span class="footer__contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </span>
+            <div class="footer__contact-text">
+              <strong class="footer__contact-label">Email:</strong><br><a href="mailto:chicthebotanicalbeauty@gmail.com" style="color:inherit;text-decoration:none;">chicthebotanicalbeauty@gmail.com</a>
+            </div>
+          </li>
+          <li>
+            <span class="footer__contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <div class="footer__contact-text">
+              <strong class="footer__contact-label">Address:</strong><br>351 2/C Saket Nagar near<br>Bhimsen Joshi Parisar Complex,<br>Madhya Pradesh,<br>Bhopal - 462024
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 4: NEWSLETTER -->
+      <div class="footer__column footer__column--newsletter">
+        <h4 class="footer__heading">Join Our Botanical Circle</h4>
+        <p class="footer__newsletter-subtitle">
+          Receive skincare tips, exclusive offers and early access to new botanical collections.
+        </p>
+        <div class="footer__newsletter">
+          {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter-form__field-wrapper">
+              <div class="field">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="ContactFooter-error"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="ContactFooter-success"
+                  {% endif %}
+                  placeholder="Enter your email"
+                  required
+                >
+                <button type="submit" class="newsletter-form__button field__button button" name="commit" id="Subscribe">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+
     </div>
 
+    <!-- BOTTOM FOOTER -->
     <div class="footer__bottom">
-      <div class="footer__localization">
-        <!-- Add localization forms here if needed (Country/Language) -->
+      <div class="footer__copyright-left">
+        &copy; {{ 'now' | date: "%Y" }} CHIC &ndash; The Botanical Beauty. <br class="mobile-only">All Rights Reserved.
       </div>
-      <div class="footer__social">
-        {%- if section.settings.show_social -%}
-          <!-- Social icons list -->
-          <ul class="list-unstyled list-social">
-            {%- if settings.social_instagram_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_instagram_link }}" class="link list-social__link">
-                  <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
-                  <!-- SVG icon Instagram -->
-                  IG
-                </a>
-              </li>
-            {%- endif -%}
-          </ul>
-        {%- endif -%}
-      </div>
-      <div class="footer__copyright">
-        <small class="copyright__content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
-            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list-unstyled list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
+      <div class="footer__copyright-right">
+        Designed with &hearts; using Shopify
       </div>
     </div>
   </div>
@@ -105,45 +155,212 @@
 
 <style>
   .footer {
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 6rem 0 2rem;
+    font-family: var(--font-body-family);
   }
+  
+  /* Minimal SVG Corners */
+  .footer-botanical-corner {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .footer-botanical-corner--tl {
+    top: -50px;
+    left: -50px;
+  }
+  .footer-botanical-corner--br {
+    bottom: -50px;
+    right: -50px;
+  }
+
+  /* Grid System */
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    margin-bottom: 5rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 5rem;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* Typography & Links */
   .footer__heading {
+    font-family: var(--font-heading-family);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 1.8rem;
+    color: #FAF7F2; /* Warm Ivory Highlight */
+  }
+
+  .footer__link {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    display: inline-block;
+  }
+  
+  .footer__list li {
+    margin-bottom: 12px;
+  }
+
+  .footer__link:hover {
+    color: #5F715A; /* Botanical Green Accent */
+  }
+
+  /* Column 1: Brand */
+  .footer__logo-link {
+    display: block;
     margin-bottom: 1.5rem;
   }
-  .footer__list li {
-    margin-bottom: 0.5rem;
+  .footer__logo-text {
+    font-family: var(--font-heading-family);
+    font-size: 32px;
+    color: #FAF7F2;
+    margin: 0;
   }
-  .footer__list a {
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+  .footer__brand-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+    max-width: 280px;
   }
-  .footer__list a:hover {
-    opacity: 1;
-  }
-  .footer__bottom {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
+  .footer__social {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer__social-icon {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    transition: all 0.3s ease;
   }
-  .list-payment {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+  .footer__social-icon:hover {
+    border-color: #5F715A;
+    color: #5F715A;
+    background-color: rgba(250,247,242,0.05);
   }
-  .field {
+
+  /* Column 3: Contact */
+  .footer__contact-list li {
     display: flex;
-    width: 100%;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .footer__contact-icon {
+    color: rgba(255,255,255,0.5);
+    margin-right: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .footer__contact-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+  }
+  .footer__contact-label {
+    color: #FAF7F2;
+    font-weight: 500;
+  }
+
+  /* Column 4: Newsletter */
+  .footer__newsletter-subtitle {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 24px;
+  }
+  .footer__newsletter-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .newsletter-form__field-wrapper .field {
+    display: flex;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 8px;
+    transition: border-color 0.3s ease;
+  }
+  .newsletter-form__field-wrapper .field:focus-within {
+    border-color: #5F715A;
   }
   .field__input {
     flex: 1;
-    padding: 1rem;
-    border: 1px solid var(--color-text);
     background: transparent;
-    color: inherit;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-family: var(--font-body-family);
+    padding: 8px 0;
+  }
+  .field__input::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+  .field__input:focus {
+    outline: none;
+  }
+  .newsletter-form__button {
+    background: transparent;
+    border: none;
+    color: #FAF7F2;
+    font-family: var(--font-body-family);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 10px;
+    transition: color 0.3s ease;
+  }
+  .newsletter-form__button:hover {
+    color: #5F715A;
+  }
+
+  /* Bottom Footer */
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+  
+  .mobile-only {
+    display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+    .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+    .mobile-only {
+      display: block;
+    }
   }
 </style>
 
@@ -164,81 +381,10 @@
       "default": "#ffffff"
     },
     {
-      "type": "checkbox",
-      "id": "show_social",
-      "default": true,
-      "label": "Show social icons"
-    },
-    {
-      "type": "checkbox",
-      "id": "payment_enable",
-      "default": true,
-      "label": "Show payment icons"
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
     }
-  ],
-  "blocks": [
-    {
-      "type": "link_list",
-      "name": "Menu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Quick links",
-          "label": "Heading"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "default": "footer",
-          "label": "Menu"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "About",
-          "label": "Heading"
-        },
-        {
-          "type": "richtext",
-          "id": "subtext",
-          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "newsletter",
-      "name": "Newsletter",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Subscribe to our emails",
-          "label": "Heading"
-        }
-      ]
-    }
-  ],
-  "default": {
-    "blocks": [
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "text"
-      },
-      {
-        "type": "newsletter"
-      }
-    ]
-  }
+  ]
 }
 {% endschema %}

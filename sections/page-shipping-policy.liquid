@@ -1,0 +1,109 @@
+<div class="page-policy section-padding">
+  <div class="page-width page-width--narrow">
+    <header class="page-policy__header text-center">
+      <h1 class="page-policy__title">Shipping Policy</h1>
+      <p class="page-policy__date">Last Updated: {{ 'now' | date: '%B %d, %Y' }}</p>
+    </header>
+
+    <div class="page-policy__content">
+      
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">1. Processing Time</h2>
+        <p>All orders are processed within 1 to 3 business days (excluding weekends and holidays) after receiving your order confirmation email. You will receive another notification when your order has shipped.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">2. Domestic Shipping</h2>
+        <p>We offer standard and expedited shipping options nationwide. Standard shipping typically takes 3-5 business days. We provide complimentary standard shipping on all orders over ₹2500.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">3. International Shipping</h2>
+        <p>Currently, we ship to select international destinations. Shipping times vary from 7-14 business days depending on the destination. Your order may be subject to import duties and taxes, which are incurred once a shipment reaches your destination country.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">4. Shipping Charges</h2>
+        <p>Shipping charges for your order will be calculated and displayed at checkout. Rates are based on the weight of your products and your location.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">5. Delays</h2>
+        <p>While we do our best to ensure timely delivery, there may occasionally be postal delays beyond our control, particularly during high-volume holiday seasons or due to unforeseen weather conditions.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">6. Tracking Orders</h2>
+        <p>When your order has shipped, you will receive an email notification from us which will include a tracking number you can use to check its status. Please allow 48 hours for the tracking information to become available.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">7. Contact Information</h2>
+        <p>If you haven’t received your order within the estimated delivery time, please contact us at <a href="mailto:chicthebotanicalbeauty@gmail.com">chicthebotanicalbeauty@gmail.com</a> with your name and order number, and we will look into it for you.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-policy {
+    padding: 8rem 0;
+    color: var(--color-text);
+  }
+  .page-policy__header {
+    margin-bottom: 5rem;
+  }
+  .page-policy__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3rem, 4vw, 4rem);
+    color: #2F342C;
+    margin-bottom: 1rem;
+  }
+  .page-policy__date {
+    font-size: 1.4rem;
+    color: #5F715A;
+    font-family: var(--font-body-family);
+  }
+  .page-policy__block {
+    margin-bottom: 4rem;
+  }
+  .page-policy__heading {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    color: #2F342C;
+    margin-bottom: 1.5rem;
+  }
+  .page-policy__content p, .page-policy__content ul, .page-policy__content li {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(47, 52, 44, 0.8);
+    margin-bottom: 1.5rem;
+  }
+  .page-policy__content a {
+    color: #5F715A;
+    text-decoration: underline;
+  }
+  .page-policy__content a:hover {
+    color: #2F342C;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .page-policy {
+      padding: 5rem 0;
+    }
+    .page-policy__header {
+      margin-bottom: 3rem;
+    }
+    .page-policy__block {
+      margin-bottom: 3rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Shipping Policy",
+  "settings": []
+}
+{% endschema %}

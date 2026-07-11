@@ -1,0 +1,104 @@
+<div class="page-policy section-padding">
+  <div class="page-width page-width--narrow">
+    <header class="page-policy__header text-center">
+      <h1 class="page-policy__title">Return Policy</h1>
+      <p class="page-policy__date">Last Updated: {{ 'now' | date: '%B %d, %Y' }}</p>
+    </header>
+
+    <div class="page-policy__content">
+      
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">1. Eligibility</h2>
+        <p>To be eligible for a return, your item must be unused, in the same condition that you received it, and in its original packaging. We understand that skincare is personal, but for hygiene and safety reasons, we cannot accept returns of products that have been opened or used.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">2. Return Window</h2>
+        <p>Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately, we cannot offer you a refund or exchange.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">3. Damaged Products</h2>
+        <p>If you receive a product that is defective or damaged during transit, please contact us immediately. We will gladly replace items if they are defective or damaged. Send us an email with a photo of the damaged item to <a href="mailto:chicthebotanicalbeauty@gmail.com">chicthebotanicalbeauty@gmail.com</a>.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">4. Refund Processing</h2>
+        <p>Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. If your return is approved, your refund will be processed, and a credit will automatically be applied to your credit card or original method of payment, within a certain amount of days.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">5. Non-returnable Items</h2>
+        <p>Several types of goods are exempt from being returned. Gift cards, downloadable software products, and certain health and personal care items cannot be returned.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">6. Contact Information</h2>
+        <p>To initiate a return or if you have any questions regarding our return policy, please reach out to us at <a href="mailto:chicthebotanicalbeauty@gmail.com">chicthebotanicalbeauty@gmail.com</a> or contact our support team at +91 - 8878280711.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-policy {
+    padding: 8rem 0;
+    color: var(--color-text);
+  }
+  .page-policy__header {
+    margin-bottom: 5rem;
+  }
+  .page-policy__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3rem, 4vw, 4rem);
+    color: #2F342C;
+    margin-bottom: 1rem;
+  }
+  .page-policy__date {
+    font-size: 1.4rem;
+    color: #5F715A;
+    font-family: var(--font-body-family);
+  }
+  .page-policy__block {
+    margin-bottom: 4rem;
+  }
+  .page-policy__heading {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    color: #2F342C;
+    margin-bottom: 1.5rem;
+  }
+  .page-policy__content p, .page-policy__content ul, .page-policy__content li {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(47, 52, 44, 0.8);
+    margin-bottom: 1.5rem;
+  }
+  .page-policy__content a {
+    color: #5F715A;
+    text-decoration: underline;
+  }
+  .page-policy__content a:hover {
+    color: #2F342C;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .page-policy {
+      padding: 5rem 0;
+    }
+    .page-policy__header {
+      margin-bottom: 3rem;
+    }
+    .page-policy__block {
+      margin-bottom: 3rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Return Policy",
+  "settings": []
+}
+{% endschema %}

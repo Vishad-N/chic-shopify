@@ -1,0 +1,109 @@
+<div class="page-policy section-padding">
+  <div class="page-width page-width--narrow">
+    <header class="page-policy__header text-center">
+      <h1 class="page-policy__title">Privacy Policy</h1>
+      <p class="page-policy__date">Last Updated: {{ 'now' | date: '%B %d, %Y' }}</p>
+    </header>
+
+    <div class="page-policy__content">
+      
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">1. Information We Collect</h2>
+        <p>When you visit the Site, we collect certain information about your device, your interaction with the Site, and information necessary to process your purchases. We may also collect additional information if you contact us for customer support. We collect device information, order information, and customer support information.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">2. How We Use Information</h2>
+        <p>We use your personal Information to provide our services to you, which includes: offering products for sale, processing payments, shipping and fulfillment of your order, and keeping you up to date on new products, services, and offers. We also use this information to screen our orders for potential risk or fraud.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">3. Cookies</h2>
+        <p>A cookie is a small amount of information that’s downloaded to your computer or device when you visit our Site. We use a number of different cookies, including functional, performance, advertising, and social media or content cookies. Cookies make your browsing experience better by allowing the website to remember your actions and preferences.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">4. Third-Party Services</h2>
+        <p>We may share your Personal Information with service providers to help us provide our services and fulfill our contracts with you. For example, we use Shopify to power our online store. We may also share your Personal Information to comply with applicable laws and regulations, or to otherwise protect our rights.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">5. Payment Security</h2>
+        <p>If you choose a direct payment gateway to complete your purchase, then Shopify stores your credit card data. It is encrypted through the Payment Card Industry Data Security Standard (PCI-DSS). All direct payment gateways adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council.</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">6. Data Protection</h2>
+        <p>To protect your personal information, we take reasonable precautions and follow industry best practices to make sure it is not inappropriately lost, misused, accessed, disclosed, altered or destroyed. If you provide us with your credit card information, the information is encrypted using secure socket layer technology (SSL).</p>
+      </section>
+
+      <section class="page-policy__block">
+        <h2 class="page-policy__heading">7. Contact Information</h2>
+        <p>For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at <a href="mailto:chicthebotanicalbeauty@gmail.com">chicthebotanicalbeauty@gmail.com</a>.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-policy {
+    padding: 8rem 0;
+    color: var(--color-text);
+  }
+  .page-policy__header {
+    margin-bottom: 5rem;
+  }
+  .page-policy__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3rem, 4vw, 4rem);
+    color: #2F342C;
+    margin-bottom: 1rem;
+  }
+  .page-policy__date {
+    font-size: 1.4rem;
+    color: #5F715A;
+    font-family: var(--font-body-family);
+  }
+  .page-policy__block {
+    margin-bottom: 4rem;
+  }
+  .page-policy__heading {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    color: #2F342C;
+    margin-bottom: 1.5rem;
+  }
+  .page-policy__content p, .page-policy__content ul, .page-policy__content li {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(47, 52, 44, 0.8);
+    margin-bottom: 1.5rem;
+  }
+  .page-policy__content a {
+    color: #5F715A;
+    text-decoration: underline;
+  }
+  .page-policy__content a:hover {
+    color: #2F342C;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .page-policy {
+      padding: 5rem 0;
+    }
+    .page-policy__header {
+      margin-bottom: 3rem;
+    }
+    .page-policy__block {
+      margin-bottom: 3rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Privacy Policy",
+  "settings": []
+}
+{% endschema %}

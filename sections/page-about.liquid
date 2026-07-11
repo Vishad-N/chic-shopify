@@ -1,0 +1,99 @@
+<div class="page-about section-padding">
+  <div class="page-width page-width--narrow">
+    <header class="page-about__header text-center">
+      <h1 class="page-about__title">{{ page.title }}</h1>
+      <p class="page-about__subtitle">Luxury botanical skincare inspired by Ayurvedic traditions and modern science.</p>
+    </header>
+
+    <div class="page-about__content">
+      
+      <section class="page-about__block">
+        <h2 class="page-about__heading">Our Story</h2>
+        <p>Born from a deep reverence for the natural world, CHIC was founded with a singular vision: to bridge the ancient wisdom of Ayurvedic healing with state-of-the-art dermatological science. What began as a passionate exploration of potent plant extracts has evolved into a comprehensive collection of luxury skincare rituals. We believe that true beauty stems from balance, and every product we craft is a testament to the harmonizing power of nature.</p>
+      </section>
+
+      <section class="page-about__block">
+        <h2 class="page-about__heading">Our Philosophy</h2>
+        <p>At the core of CHIC is the philosophy that skincare is not merely a routine, but a sacred ritual. We celebrate the sensory experience of skincare—the rich textures, the grounding botanical aromas, and the visible vitality it brings to the skin. Our approach is holistic; we treat the skin as an ecosystem that thrives when nourished with uncompromised, living ingredients.</p>
+      </section>
+
+      <section class="page-about__block">
+        <h2 class="page-about__heading">Botanical Ingredients</h2>
+        <p>We source our ingredients with uncompromising rigor. From wild-harvested Neem and Calendula to cold-pressed seed oils, every botanical active is selected for its clinical efficacy and purity. We refuse to use synthetic fillers, ensuring that every drop in our amber glass bottles serves a purpose. Nature provides the complex molecular structures; we simply harvest them at their peak.</p>
+      </section>
+
+      <section class="page-about__block">
+        <h2 class="page-about__heading">Our Promise</h2>
+        <p>We promise transparency, sustainability, and efficacy. Our formulations are cruelty-free, meticulously tested for safety, and packaged with a deep respect for the environment. When you choose CHIC, you are not just caring for your skin—you are investing in a mindful, luxurious practice that honors both you and the earth.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-about {
+    padding: 8rem 0;
+    color: var(--color-text);
+  }
+  .page-about__header {
+    margin-bottom: 6rem;
+  }
+  .page-about__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.5rem, 5vw, 5rem);
+    color: #2F342C; /* Dark Olive */
+    margin-bottom: 1.5rem;
+  }
+  .page-about__subtitle {
+    font-size: 1.8rem;
+    color: #5F715A; /* Botanical Green */
+    font-family: var(--font-heading-family);
+    font-style: italic;
+  }
+  .page-about__block {
+    margin-bottom: 5rem;
+  }
+  .page-about__heading {
+    font-family: var(--font-heading-family);
+    font-size: 2.8rem;
+    color: #2F342C;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  .page-about__heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background-color: #5F715A;
+  }
+  .page-about__content p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: rgba(47, 52, 44, 0.8);
+    margin-bottom: 2rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .page-about {
+      padding: 5rem 0;
+    }
+    .page-about__header {
+      margin-bottom: 4rem;
+    }
+    .page-about__block {
+      margin-bottom: 4rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": []
+}
+{% endschema %}

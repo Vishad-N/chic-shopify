@@ -230,8 +230,9 @@
       ],
       "settings": {
         "heading": "WHY CHOOSE CHIC",
-        "color_bg": "#f8f6f1",
-        "card_radius": 16
+        "subtitle": "Nature. Science. Ritual.",
+        "description": "<p>Every CHIC formulation begins with carefully selected botanical ingredients, inspired by centuries of Ayurvedic wisdom and refined through modern skincare research to create rituals that nurture healthy, radiant skin.</p>",
+        "color_bg": "#f8f6f1"
       }
     },
     "testimonials": {
@@ -240,27 +241,30 @@
         "test_1": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/sakshi-agarwal1780379864_8.webp",
             "rating": 5,
             "quote": "Natural, luxurious, and deeply hydrating.",
-            "author": "Sarah M.",
+            "author": "Reena Yadav",
             "location": "Verified Buyer"
           }
         },
         "test_2": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/23e4df093e07775622fdd576d6c344f2.webp",
             "rating": 5,
             "quote": "The best skincare routine I have ever used.",
-            "author": "Jessica L.",
+            "author": "Sonam Singh",
             "location": "Verified Buyer"
           }
         },
         "test_3": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/siya-goyal.webp",
             "rating": 5,
             "quote": "Absolutely perfect for my sensitive skin.",
-            "author": "Emily R.",
+            "author": "Pooja Shrivastava",
             "location": "Verified Buyer"
           }
         }
