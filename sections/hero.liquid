@@ -1,66 +1,110 @@
-<div class="hero hero--{{ section.settings.hero_height }}" style="background-color: {{ section.settings.color_bg }};">
-  <div class="hero__image-wrapper">
-    {%- if section.settings.image != blank -%}
-      <img src="{{ section.settings.image | image_url: width: 2000 }}" 
-           alt="{{ section.settings.image.alt | escape }}" 
-           class="hero__image hero__image--desktop" 
-           loading="eager" 
-           width="2000" 
-           height="{{ 2000 | divided_by: section.settings.image.aspect_ratio | round }}">
-      
-      {%- if section.settings.image_mobile != blank -%}
-        <img src="{{ section.settings.image_mobile | image_url: width: 800 }}" 
-             alt="{{ section.settings.image_mobile.alt | escape }}" 
-             class="hero__image hero__image--mobile" 
+<div class="hero" style="background-color: {{ section.settings.color_bg }};">
+  
+  <!-- DESKTOP HERO (Hidden on Mobile) -->
+  <div class="hero__desktop-layout hero--{{ section.settings.hero_height }}">
+    <div class="hero__image-wrapper">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 2000 }}" 
+             alt="{{ section.settings.image.alt | escape }}" 
+             class="hero__image hero__image--desktop" 
              loading="eager" 
-             width="800" 
-             height="{{ 800 | divided_by: section.settings.image_mobile.aspect_ratio | round }}">
+             width="2000" 
+             height="{{ 2000 | divided_by: section.settings.image.aspect_ratio | round }}">
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'hero__image placeholder-svg' }}
       {%- endif -%}
-    {%- else -%}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero__image placeholder-svg' }}
-    {%- endif -%}
+    </div>
+
+    <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%);"></div>
+
+    <div class="hero__content-wrapper page-width">
+      <div class="hero__content {{ section.settings.content_alignment }}">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="hero__eyebrow hero-animate-up">
+            {{ section.settings.eyebrow | escape }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h1 class="hero__heading hero-animate-up" style="color: {{ section.settings.color_text }}; animation-delay: 0.1s;">
+            {{ section.settings.heading }}
+          </h1>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <div class="hero__subheading hero-animate-up" style="animation-delay: 0.2s;">
+            {{ section.settings.subheading }}
+          </div>
+        {%- endif -%}
+
+        <div class="hero__buttons">
+          {%- if section.settings.button_1_label != blank -%}
+            <a href="{{ section.settings.button_1_link }}" class="hero__btn hero__btn--primary hero-animate-up" style="animation-delay: 0.3s;">
+              {{ section.settings.button_1_label | escape }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_2_label != blank -%}
+            <a href="{{ section.settings.button_2_link }}" class="hero__btn hero__btn--secondary hero-animate-up" style="animation-delay: 0.4s;">
+              {{ section.settings.button_2_label | escape }} <span class="arrow">&rarr;</span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%);"></div>
+  <!-- MOBILE HERO (Hidden on Desktop) -->
+  <div class="hero__mobile-layout">
+    <div class="mobile-hero__image-wrapper">
+      <img src="{{ 'mobile_hero_botanical.png' | asset_url }}" 
+           alt="Botanical Skin Rituals" 
+           class="mobile-hero__image" 
+           loading="eager" 
+           width="800" 
+           height="1422">
+    </div>
 
-  <div class="hero__content-wrapper page-width">
-    <div class="hero__content {{ section.settings.content_alignment }}">
-      {%- if section.settings.eyebrow != blank -%}
-        <div class="hero__eyebrow hero-animate-up">
-          {{ section.settings.eyebrow | escape }}
+    <!-- Subtle vertical gradient overlay only at the bottom for readability -->
+    <div class="mobile-hero__overlay"></div>
+
+    <div class="mobile-hero__content-wrapper">
+      <div class="mobile-hero__content">
+        <div class="mobile-hero__eyebrow">
+          BOTANICAL SKIN RITUALS
         </div>
-      {%- endif -%}
 
-      {%- if section.settings.heading != blank -%}
-        <h1 class="hero__heading hero-animate-up" style="color: {{ section.settings.color_text }}; animation-delay: 0.1s;">
-          {{ section.settings.heading }}
+        <h1 class="mobile-hero__heading">
+          Luxury Botanical<br>Beauty Crafted<br>by Nature
         </h1>
-      {%- endif -%}
 
-      {%- if section.settings.subheading != blank -%}
-        <div class="hero__subheading hero-animate-up" style="animation-delay: 0.2s;">
-          {{ section.settings.subheading }}
+        <div class="mobile-hero__subheading">
+          Pure botanical skincare rituals inspired by nature and perfected with science.
         </div>
-      {%- endif -%}
 
-      <div class="hero__buttons">
-        {%- if section.settings.button_1_label != blank -%}
-          <a href="{{ section.settings.button_1_link }}" class="hero__btn hero__btn--primary hero-animate-up" style="animation-delay: 0.3s;">
-            {{ section.settings.button_1_label | escape }}
+        <div class="mobile-hero__buttons">
+          <a href="/collections/all" class="mobile-hero__btn mobile-hero__btn--primary">
+            Shop Collection
           </a>
-        {%- endif -%}
-        {%- if section.settings.button_2_label != blank -%}
-          <a href="{{ section.settings.button_2_link }}" class="hero__btn hero__btn--secondary hero-animate-up" style="animation-delay: 0.4s;">
-            {{ section.settings.button_2_label | escape }} <span class="arrow">&rarr;</span>
+          <a href="/pages/about" class="mobile-hero__btn mobile-hero__btn--secondary">
+            Discover Our Story <span class="arrow">&rarr;</span>
           </a>
-        {%- endif -%}
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <style>
+  /* Global Hero Variables/Reset */
   .hero {
+    position: relative;
+    width: 100%;
+  }
+
+  /* ========================================================
+     DESKTOP LAYOUT (Default styles, exactly as before)
+     ======================================================== */
+  .hero__desktop-layout {
     position: relative;
     display: flex;
     align-items: center;
@@ -74,11 +118,8 @@
   @media screen and (min-width: 1025px) {
     .hero--large { height: 100vh; }
   }
-  @media screen and (min-width: 750px) and (max-width: 1024px) {
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
     .hero--large { height: 85vh; }
-  }
-  @media screen and (max-width: 749px) {
-    .hero--large { height: 100svh; }
   }
   
   .hero__image-wrapper {
@@ -86,7 +127,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 120%; /* For parallax */
+    height: 120%;
     transform: translateY(0);
     will-change: transform;
     z-index: 1;
@@ -97,15 +138,6 @@
     object-fit: cover;
     object-position: 70% center;
   }
-  .hero__image--mobile {
-    display: none;
-  }
-  {%- if section.settings.image_mobile != blank -%}
-    @media screen and (max-width: 749px) {
-      .hero__image--desktop { display: none; }
-      .hero__image--mobile { display: block; object-position: center; }
-    }
-  {%- endif -%}
 
   .hero__overlay {
     position: absolute;
@@ -124,26 +156,16 @@
     justify-content: flex-start;
     align-items: center;
   }
-  @media screen and (max-width: 749px) {
-    .hero__content-wrapper {
-      justify-content: center;
-    }
-  }
+  
   .hero__content {
     max-width: 680px;
     padding: 0;
   }
   .hero__content.text-center {
-    text-align: left; /* overridden to match editorial layout */
+    text-align: left;
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-  }
-  @media screen and (max-width: 749px) {
-    .hero__content.text-center {
-      text-align: center;
-      align-items: center;
-    }
   }
   .hero__content.text-left {
     text-align: left;
@@ -153,6 +175,7 @@
     text-align: right;
     margin-left: auto;
   }
+  
   .hero__eyebrow {
     font-family: var(--font-body-family);
     font-size: 14px;
@@ -190,15 +213,6 @@
     justify-content: flex-start;
   }
   
-  @media screen and (max-width: 749px) {
-    .hero__buttons {
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-      gap: 20px;
-    }
-  }
-
   .hero__btn {
     font-family: var(--font-body-family);
     font-size: 16px;
@@ -207,7 +221,6 @@
     transition: all 0.25s ease;
     cursor: pointer;
   }
-  
   .hero__btn--primary {
     display: inline-flex;
     align-items: center;
@@ -220,11 +233,10 @@
     border: none;
   }
   .hero__btn--primary:hover {
-    background-color: #4E5D49; /* slightly darker green */
+    background-color: #4E5D49;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   }
-  
   .hero__btn--secondary {
     display: inline-flex;
     align-items: center;
@@ -239,36 +251,198 @@
     transition: transform 0.25s ease;
   }
   .hero__btn--secondary:hover {
-    color: #D4B170; /* Champagne Gold */
+    color: #D4B170;
   }
   .hero__btn--secondary:hover .arrow {
     transform: translateX(4px);
   }
   
-  /* Animations */
   .hero-animate-up {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   }
-  
   @keyframes fadeUp {
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
+
+
+  /* ========================================================
+     MOBILE LAYOUT (Max width: 768px)
+     ======================================================== */
+  .hero__mobile-layout {
+    display: none; /* Hidden by default */
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Hide desktop */
+    .hero__desktop-layout {
+      display: none !important;
+    }
+
+    /* Show mobile */
+    .hero__mobile-layout {
+      position: relative;
+      display: flex;
+      align-items: flex-end; /* Align content to the bottom where the overlay is */
+      width: 100%;
+      height: 100svh; /* Occupy full viewport */
+      overflow: hidden;
+      padding-bottom: 24px;
+    }
+
+    /* Mobile Image (9:16 Portrait Botanical) */
+    .mobile-hero__image-wrapper {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+    }
+    .mobile-hero__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center; /* Ensures the composition feels calm and centered */
+    }
+
+    /* Bottom Gradient Overlay (Only at the bottom) */
+    .mobile-hero__overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%; /* Only cover the bottom portion */
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Content Styling */
+    .mobile-hero__content-wrapper {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .mobile-hero__content {
+      /* Left aligned styling explicitly */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .mobile-hero__eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 12px;
+      
+      /* Animation */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+    }
+
+    .mobile-hero__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 12vw, 52px);
+      font-weight: 500;
+      line-height: 0.95;
+      color: #FFFFFF;
+      margin: 0 0 20px 0;
+
+      /* Animation */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+      animation-delay: 0.1s;
+    }
+
+    .mobile-hero__subheading {
+      font-family: 'Manrope', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.95);
+      max-width: 90%;
+      margin: 0 0 32px 0;
+
+      /* Animation */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+      animation-delay: 0.2s;
+    }
+
+    .mobile-hero__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+
+      /* Animation */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+      animation-delay: 0.3s;
+    }
+
+    .mobile-hero__btn {
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .mobile-hero__btn--primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #5F715A; /* Botanical Green */
+      color: #FFFFFF;
+      padding: 0 32px;
+      height: 52px;
+      border-radius: 999px;
+    }
+    
+    .mobile-hero__btn--secondary {
+      display: inline-flex;
+      align-items: center;
+      color: #FFFFFF;
+      padding: 0;
+    }
+    .mobile-hero__btn--secondary .arrow {
+      margin-left: 6px;
+      transition: transform 0.25s ease;
+    }
+    
+    /* Hover effects for mobile (mostly for tablets below 768px with cursor) */
+    .mobile-hero__btn--secondary:hover {
+      color: #D4B170; /* Champagne Gold */
+    }
+    .mobile-hero__btn--secondary:hover .arrow {
+      transform: translateX(4px);
+    }
+  }
 </style>
 
 <script>
-  // Very subtle parallax
+  // Very subtle parallax for desktop hero image
   document.addEventListener('DOMContentLoaded', () => {
-    const heroImage = document.querySelector('.hero__image-wrapper');
-    if (heroImage) {
+    const desktopHeroImage = document.querySelector('.hero__desktop-layout .hero__image-wrapper');
+    if (desktopHeroImage && window.innerWidth > 768) {
       window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         if (scrolled < window.innerHeight) {
-          heroImage.style.transform = `translateY(${scrolled * 0.15}px)`;
+          desktopHeroImage.style.transform = `translateY(${scrolled * 0.15}px)`;
         }
       });
     }
@@ -283,11 +457,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "Desktop Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Mobile Image (optional)"
     },
     {
       "type": "select",
@@ -307,24 +476,24 @@
       "max": 100,
       "step": 5,
       "default": 40,
-      "label": "Overlay opacity"
+      "label": "Desktop Overlay opacity"
     },
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow"
+      "label": "Desktop Eyebrow"
     },
     {
       "type": "textarea",
       "id": "heading",
       "default": "Luxury Botanical<br>Beauty Crafted<br>by Nature",
-      "label": "Heading"
+      "label": "Desktop Heading"
     },
     {
       "type": "richtext",
       "id": "subheading",
       "default": "<p>Pure botanical skincare rituals inspired by nature and perfected with science.</p>",
-      "label": "Subheading"
+      "label": "Desktop Subheading"
     },
     {
       "type": "select",
@@ -335,35 +504,35 @@
         { "value": "text-right", "label": "Right" }
       ],
       "default": "text-center",
-      "label": "Content alignment"
+      "label": "Desktop Content alignment"
     },
     {
       "type": "color",
       "id": "color_text",
-      "label": "Text Color",
+      "label": "Desktop Text Color",
       "default": "#ffffff"
     },
     {
       "type": "text",
       "id": "button_1_label",
       "default": "Shop Collection",
-      "label": "Button 1 label"
+      "label": "Desktop Button 1 label"
     },
     {
       "type": "url",
       "id": "button_1_link",
-      "label": "Button 1 link"
+      "label": "Desktop Button 1 link"
     },
     {
       "type": "text",
       "id": "button_2_label",
       "default": "Discover Our Story",
-      "label": "Button 2 label"
+      "label": "Desktop Button 2 label"
     },
     {
       "type": "url",
       "id": "button_2_link",
-      "label": "Button 2 link"
+      "label": "Desktop Button 2 link"
     }
   ],
   "presets": [
