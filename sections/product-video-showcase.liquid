@@ -1,0 +1,99 @@
+{%- if product.metafields.custom.product_video != blank -%}
+  <div class="product-video-showcase section-padding page-width" data-section-id="{{ section.id }}">
+    <div class="section-heading text-center">
+      <h2>{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="section-subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+    
+    <div class="product-video-wrapper">
+      {{ product.metafields.custom.product_video | video_tag: 
+          controls: true, 
+          autoplay: false, 
+          loop: false, 
+          muted: false, 
+          preload: 'metadata',
+          image_size: '1200x', 
+          class: 'product-video-player' 
+      }}
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .product-video-showcase .section-heading h2 {
+    font-family: var(--font-heading-family);
+    font-size: 3.5rem;
+    color: #2C2A28;
+    margin-bottom: 1rem;
+  }
+  .product-video-showcase .section-subheading {
+    font-family: var(--font-body-family);
+    font-size: 1.6rem;
+    color: #5F715A;
+    margin-bottom: 4rem;
+  }
+  .product-video-wrapper {
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    margin: 0 auto;
+    max-width: 1000px; /* Keep it focused, matching typical max-widths for featured media */
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-video-player {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    background-color: #000; /* Prevent white flashes before load */
+  }
+
+  @media screen and (max-width: 768px) {
+    .product-video-wrapper {
+      padding: 16px;
+      border-radius: 20px;
+    }
+    .product-video-player {
+      border-radius: 8px;
+    }
+    .product-video-showcase .section-heading h2 {
+      font-size: 2.8rem;
+    }
+    .product-video-showcase .section-subheading {
+      font-size: 1.4rem;
+      margin-bottom: 3rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Video Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "See It In Action",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Watch how this product is used and loved by our community.",
+      "label": "Subheading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Video Showcase"
+    }
+  ]
+}
+{% endschema %}

@@ -1,24 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "title": { "type": "title" },
-        "description": { "type": "description" },
-        "rating": { "type": "rating" },
-        "price": { "type": "price" },
-        "variant_picker": { "type": "variant_picker" },
-        "quantity_selector": { "type": "quantity_selector" },
-        "buy_buttons": { "type": "buy_buttons" },
-        "delivery_info": { "type": "delivery_info" },
-        "highlights": { "type": "highlights" },
-        "accordion_desc": { "type": "accordion", "settings": { "heading": "Description" } },
-        "accordion_benefits": { "type": "accordion", "settings": { "heading": "Benefits" } },
-        "accordion_ingredients": { "type": "accordion", "settings": { "heading": "Ingredients" } },
-        "accordion_how": { "type": "accordion", "settings": { "heading": "How To Use" } },
-        "accordion_who": { "type": "accordion", "settings": { "heading": "Who Should Use" } },
-        "accordion_faq": { "type": "accordion", "settings": { "heading": "FAQs" } },
-        "accordion_shipping": { "type": "accordion", "settings": { "heading": "Shipping & Returns" } }
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {}
+        },
+        "delivery_info": {
+          "type": "delivery_info",
+          "settings": {}
+        },
+        "highlights": {
+          "type": "highlights",
+          "settings": {}
+        },
+        "accordion_desc": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Description"
+          }
+        },
+        "accordion_benefits": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Benefits"
+          }
+        },
+        "accordion_ingredients": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Ingredients"
+          }
+        },
+        "accordion_how": {
+          "type": "accordion",
+          "settings": {
+            "heading": "How To Use"
+          }
+        },
+        "accordion_who": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Who Should Use"
+          }
+        },
+        "accordion_faq": {
+          "type": "accordion",
+          "settings": {
+            "heading": "FAQs"
+          }
+        },
+        "accordion_shipping": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Shipping & Returns"
+          }
+        }
       },
       "block_order": [
         "title",
@@ -40,6 +111,13 @@
       ],
       "settings": {}
     },
+    "product-video": {
+      "type": "product-video-showcase",
+      "settings": {
+        "heading": "See It In Action",
+        "subheading": "Watch how this product is used and loved by our community."
+      }
+    },
     "related": {
       "type": "related-products",
       "settings": {}
@@ -51,7 +129,8 @@
   },
   "order": [
     "main",
+    "product-video",
     "related",
     "recently_viewed"
   ]
-} 
+}
