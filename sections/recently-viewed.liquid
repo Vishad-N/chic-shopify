@@ -1,0 +1,72 @@
+<div class="recently-viewed section-padding page-width" style="display: none;">
+  <div class="section-heading text-center">
+    <h2>{{ section.settings.heading | escape }}</h2>
+  </div>
+  
+  <div class="recently-viewed__grid grid grid--4-col">
+    {%- if search.performed -%}
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' -%}
+          <div class="grid__item">
+            {% render 'product-card', product: item, show_rating: true %}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const handles = JSON.parse(localStorage.getItem('chic_recently_viewed')) || [];
+    const container = document.querySelector('.recently-viewed');
+    const grid = container.querySelector('.recently-viewed__grid');
+    
+    const currentHandle = '{{ product.handle }}';
+    const filteredHandles = handles.filter(h => h !== currentHandle).slice(0, 4);
+
+    if (filteredHandles.length > 0) {
+      let query = filteredHandles.map(h => `handle:${h}`).join(' OR ');
+      fetch(`${window.Shopify.routes.root}search?type=product&q=${encodeURIComponent(query)}&section_id={{ section.id }}`)
+        .then(response => response.text())
+        .then(text => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const newGrid = html.querySelector('.recently-viewed__grid');
+          if (newGrid && newGrid.innerHTML.trim() !== '') {
+            grid.innerHTML = newGrid.innerHTML;
+            container.style.display = 'block';
+          }
+        })
+        .catch(e => console.error(e));
+    }
+  });
+</script>
+
+<style>
+  .recently-viewed .section-heading h2 {
+    font-family: var(--font-heading-family);
+    font-size: 3.5rem;
+    color: #2C2A28;
+    margin-bottom: 3rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Recently Viewed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently Viewed",
+      "label": "Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recently Viewed"
+    }
+  ]
+}
+{% endschema %}

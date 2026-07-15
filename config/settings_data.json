@@ -63,38 +63,9 @@
       },
       "footer": {
         "type": "footer",
-        "blocks": {
-          "footer-0": {
-            "type": "link_list",
-            "settings": {
-              "heading": "Quick links",
-              "menu": "footer"
-            }
-          },
-          "footer-1": {
-            "type": "text",
-            "settings": {
-              "heading": "About",
-              "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
-            }
-          },
-          "footer-2": {
-            "type": "newsletter",
-            "settings": {
-              "heading": "Subscribe to our emails"
-            }
-          }
-        },
-        "block_order": [
-          "footer-0",
-          "footer-1",
-          "footer-2"
-        ],
         "settings": {
           "color_bg": "#2b4c3b",
-          "color_text": "#ffffff",
-          "show_social": true,
-          "payment_enable": true
+          "color_text": "#ffffff"
         }
       },
       "cart-drawer": {

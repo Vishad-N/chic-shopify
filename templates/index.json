@@ -203,7 +203,6 @@
         "icon_1": {
           "type": "icon_card",
           "settings": {
-            "image": "shopify://shop_images/thick-lush-green-forest.jpg",
             "title": "100% Botanical",
             "description": "<p>Luxury from nature.</p>"
           }
@@ -286,49 +285,57 @@
         "img_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1740889835_3578685356232587443_65551771296.jpg",
             "link": ""
           }
         },
         "img_2": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/amritasenguptakolkata_1740541325_3576242299875346479_8684096357.webp",
+            "link": "https://www.instagram.com/p/DGhXW5nyZ6b/?img_index=1"
           }
         },
         "img_3": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1754919847_3696858088096645638_65551771296.webp",
+            "link": "https://www.instagram.com/p/DNN4NgmB8IG/"
           }
         },
         "img_4": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1770888904_3830816234825481153_65551771296.webp",
+            "link": "https://www.instagram.com/p/DUpyxGsknvB/"
           }
         },
         "img_5": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1769147441_3816207793212923702_65551771296.jpg",
+            "link": "https://www.instagram.com/p/DT15MTPiJ82/"
           }
         },
         "img_6": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1755419828_3701052222053066374_65551771296.jpg",
+            "link": "https://www.instagram.com/p/DNcx2TapgHN/?img_index=1"
           }
         },
         "img_7": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1770888904_3830816237761471656_65551771296.webp",
+            "link": "https://www.instagram.com/p/DUpyxJbkiSo/"
           }
         },
         "img_8": {
           "type": "image",
           "settings": {
-            "link": ""
+            "image": "shopify://shop_images/chic_the_botanical_beauty_1731924562_3503959649097773061_65551771296.jpg",
+            "link": "https://www.instagram.com/p/DCgkLxvxnAF/"
           }
         }
       },

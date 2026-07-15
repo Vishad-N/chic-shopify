@@ -1,72 +1,57 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {}
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "ingredients": {
-          "type": "accordion",
-          "settings": {
-            "heading": "Ingredients",
-            "content": "<p>100% natural and organic ingredients carefully sourced for your skin.</p>"
-          }
-        },
-        "how_to_use": {
-          "type": "accordion",
-          "settings": {
-            "heading": "How To Use",
-            "content": "<p>Apply a few drops to clean skin morning and evening.</p>"
-          }
-        }
+        "title": { "type": "title" },
+        "description": { "type": "description" },
+        "rating": { "type": "rating" },
+        "price": { "type": "price" },
+        "variant_picker": { "type": "variant_picker" },
+        "quantity_selector": { "type": "quantity_selector" },
+        "buy_buttons": { "type": "buy_buttons" },
+        "delivery_info": { "type": "delivery_info" },
+        "highlights": { "type": "highlights" },
+        "accordion_desc": { "type": "accordion", "settings": { "heading": "Description" } },
+        "accordion_benefits": { "type": "accordion", "settings": { "heading": "Benefits" } },
+        "accordion_ingredients": { "type": "accordion", "settings": { "heading": "Ingredients" } },
+        "accordion_how": { "type": "accordion", "settings": { "heading": "How To Use" } },
+        "accordion_who": { "type": "accordion", "settings": { "heading": "Who Should Use" } },
+        "accordion_faq": { "type": "accordion", "settings": { "heading": "FAQs" } },
+        "accordion_shipping": { "type": "accordion", "settings": { "heading": "Shipping & Returns" } }
       },
       "block_order": [
         "title",
+        "description",
+        "rating",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description",
-        "ingredients",
-        "how_to_use"
+        "delivery_info",
+        "highlights",
+        "accordion_desc",
+        "accordion_benefits",
+        "accordion_ingredients",
+        "accordion_how",
+        "accordion_who",
+        "accordion_faq",
+        "accordion_shipping"
       ],
+      "settings": {}
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {}
+    },
+    "recently_viewed": {
+      "type": "recently-viewed",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "related",
+    "recently_viewed"
   ]
-}
+} 

@@ -1,0 +1,61 @@
+<div class="related-products section-padding page-width" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4">
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <div class="section-heading text-center">
+      <h2>{{ section.settings.heading | escape }}</h2>
+    </div>
+    <div class="grid grid--4-col">
+      {%- for recommendation in recommendations.products -%}
+        <div class="grid__item">
+          {% render 'product-card', product: recommendation, show_rating: true %}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const relatedProducts = document.querySelector('.related-products');
+    if (relatedProducts) {
+      fetch(relatedProducts.dataset.url)
+        .then(response => response.text())
+        .then(text => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const recommendations = html.querySelector('.related-products');
+          if (recommendations && recommendations.innerHTML.trim().length) {
+            relatedProducts.innerHTML = recommendations.innerHTML;
+          }
+        })
+        .catch(e => console.error(e));
+    }
+  });
+</script>
+
+<style>
+  .related-products .section-heading h2 {
+    font-family: var(--font-heading-family);
+    font-size: 3.5rem;
+    color: #2C2A28;
+    margin-bottom: 3rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You May Also Like",
+      "label": "Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Products"
+    }
+  ]
+}
+{% endschema %}
