@@ -1,0 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-contact",
+      "settings": {
+        "phone": "+91 - 8878280711",
+        "whatsapp": "+91 - 8878280711",
+        "support_time": "24/7",
+        "email": "chicthebotanicalbeauty@gmail.com",
+        "address": "351 2/C Saket Nagar near\nBhimsen Joshi Parisar Complex,\nMadhya Pradesh,\nBhopal - 462024"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

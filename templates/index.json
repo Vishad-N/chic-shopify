@@ -12,18 +12,18 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/Gemini_Generated_Image_9ue1me9ue1me9ue1.png",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_15_2026_03_06_42_PM.png",
         "hero_height": "large",
         "overlay_opacity": 30,
         "eyebrow": ".",
         "heading": "Luxury Botanical<br>Beauty Crafted<br>by Nature",
-        "subheading": "<p>Pure botanical skincare rituals inspired by nature and perfected with science.</p>",
+        "subheading": "<p>Pure botanical skincare rituals inspired by<br>nature and perfected with science.</p>",
         "content_alignment": "text-center",
         "color_text": "#ffffff",
         "button_1_label": "Shop Collection",
         "button_1_link": "shopify://collections/all",
         "button_2_label": "Discover Our Story",
-        "button_2_link": "shopify://pages/about"
+        "button_2_link": "shopify://pages/about-us"
       }
     },
     "featured_collections": {
